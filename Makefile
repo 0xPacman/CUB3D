@@ -13,10 +13,15 @@
 NAME	=	cub3d
 CC		=	cc
 CFLAGS	=	-Werror -Wextra -Wall
-GFLAGS	=	-lmlx -framework OpenGL -framework AppKit
 LIBFT	=	./libft/libft.a
-SRCS	=	cub3d.c
+SRCS	=	cub3d.c src/parsing/print_error.c
 OBJS	=	$(SRCS:.c=.o)
+ifeq ($(UNAME),Linux)
+	GFLAGS = -I /usr/local/include -lmlx -lXext -lX11 -lm
+endif
+ifeq ($(UNAME),Darwin)
+	GFLAGS = -lmlx -framework OpenGL -framework AppKit
+endif
 
 $(NAME): $(OBJS)
 	@printf "\033[1;36m Compiling \033[0m LIBFT \033[1;36m√\033[0m\n"
@@ -38,4 +43,4 @@ fclean: clean
 	@$(MAKE) -s fclean -C ./libft
 	@rm -rf $(NAME)
 
-re: fclean all
+re: fclean all clean
