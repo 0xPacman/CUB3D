@@ -16,7 +16,7 @@ CFLAGS	=	-Werror -Wextra -Wall
 GFLAGS	=	-lmlx -framework OpenGL -framework AppKit
 LIBFT	=	./libft/libft.a
 
-SRCS	=	cube3d.c
+SRCS	=	cub3d.c
 
 OBJS	=	$(SRCS:.c=.o)
 
