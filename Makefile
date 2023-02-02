@@ -14,7 +14,16 @@ NAME	=	cub3d
 CC		=	cc
 CFLAGS	=	-Werror -Wextra -Wall
 LIBFT	=	./libft/libft.a
-SRCS	=	cub3d.c src/parsing/print_error.c
+<<<<<<< HEAD
+=======
+
+SRCS	=	cub3d.c \
+			./srcs/execution/engine/engine.c \
+			./srcs/execution/controls/controls.c \
+			./src/parsing/print_error.c
+
+
+>>>>>>> 79e9fbd5223b7c401d461912112d6d5d62f7f72d
 OBJS	=	$(SRCS:.c=.o)
 ifeq ($(UNAME),Linux)
 	GFLAGS = -I /usr/local/include -lmlx -lXext -lX11 -lm
