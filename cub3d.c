@@ -74,7 +74,6 @@ int check_cub(char *filename)
     splitted = ft_split(filename, '.');
     if (!splitted)
         return (0);
-    //map.cub.cub should be valid
     if (!ft_strncmp(splitted[ft_tablen(splitted) - 1], "cub", 3))
     {
         ft_free_tab(splitted);
