@@ -15,9 +15,7 @@ CC		=	cc
 CFLAGS	=	-Werror -Wextra -Wall
 GFLAGS	=	-lmlx -framework OpenGL -framework AppKit
 LIBFT	=	./libft/libft.a
-
 SRCS	=	cub3d.c
-
 OBJS	=	$(SRCS:.c=.o)
 
 $(NAME): $(OBJS)
@@ -26,7 +24,7 @@ $(NAME): $(OBJS)
 	@$(CC) $(LIBFT) $(GFLAGS) $^ -o $@
 	@printf "\n\033[1;36m ───────────── Done ──────────── \033[0m\n\n"
 
-%.o: %.c cube3d.h
+%.o: %.c ./include/cub3d.h
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@printf "\033[1;36m Compiling \033[0m $< \033[1;36m√\033[0m\n"
 
