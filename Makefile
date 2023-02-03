@@ -14,7 +14,7 @@ NAME	=	cub3d
 CC		=	cc
 CFLAGS	=	-Werror -Wextra -Wall
 LIBFT	=	./libft/libft.a
-
+GFLAGS = -lmlx -framework OpenGL -framework AppKit
 SRCS	=	cub3d.c \
 			./srcs/execution/engine/engine.c \
 			./srcs/execution/controls/controls.c \
