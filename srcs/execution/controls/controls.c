@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:06:22 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/02 17:37:49 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:20:55 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int close_game(t_engine *engine) {
     engine->ray = NULL;
     free(engine->controls);
     engine->controls = NULL;
-    //free(engine);
-    //engine = NULL;
+    free(engine);
+    engine = NULL;
     exit(EXIT_SUCCESS);
 }
 
