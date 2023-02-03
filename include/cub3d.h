@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/03 15:13:53 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:34:34 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
+# include "../srcs/parsing/get_next_line/get_next_line.h"
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
@@ -112,6 +113,7 @@ int     ESC(t_engine *engine);
 
 // parsing functions
 void   print_error(int error);
+t_file *init_map(int fd, char *path);
 
 
 #endif
