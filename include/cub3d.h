@@ -6,11 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/02/02 21:07:45 by ahjadani         ###   ########.fr       */
-=======
-/*   Updated: 2023/02/02 17:31:20 by roudouch         ###   ########.fr       */
->>>>>>> 79e9fbd5223b7c401d461912112d6d5d62f7f72d
+/*   Updated: 2023/02/03 10:08:43 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +21,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-<<<<<<< HEAD
-// parsing functions
-void   print_error(int error);
-=======
 #define bool int
 #define true 1
 #define false 0
@@ -88,12 +80,13 @@ typedef struct s_engine {
     t_controls  *controls;
 }               t_engine;
 
-// execution
+// execution functions
 void    start_engine(void);
 void    init_controls(t_engine *engine);
 int     ESC(t_engine *engine);
 
+// parsing functions
+void   print_error(int error);
 
->>>>>>> 79e9fbd5223b7c401d461912112d6d5d62f7f72d
 
 #endif
