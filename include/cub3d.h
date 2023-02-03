@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/03 15:34:34 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:04:26 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../libft/libft.h"
 # include "../srcs/parsing/get_next_line/get_next_line.h"
+# include "./errors.h"
 # include <mlx.h>
 # include <fcntl.h>
 # include <math.h>
@@ -112,7 +113,6 @@ void    init_controls(t_engine *engine);
 int     ESC(t_engine *engine);
 
 // parsing functions
-void   print_error(int error);
 t_file *init_map(int fd, char *path);
 
 
