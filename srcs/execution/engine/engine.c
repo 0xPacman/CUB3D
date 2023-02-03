@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/03 15:42:33 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:49:56 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,16 @@ bool   init_engine(t_engine *engine) {
     if (!engine->player)
         return (false);
     engine->ray = malloc(sizeof(t_ray));
-    if (!engine->ray)
+    if (!engine->ray) {
+        free(engine->player);
         return (false);
+    }
     engine->controls = malloc(sizeof(t_controls));
-    if (!engine->controls)
+    if (!engine->controls) {
+        free(engine->player);
+        free(engine->ray);
         return (false);
+    }
     return (true);
 }
 

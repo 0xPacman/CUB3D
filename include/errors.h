@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:26:47 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/03 15:46:23 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:53:52 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define INIT_ENGINE "Error: Failed to initialize engine!\n"
 # define INVALID_ARGS "Error: Invalid arguments\n"
 # define READ_FILE "Error: Failed to read the file\n"
+# define OPEN_FILE "Error: Failed to open the file\n"
 # define PARSE_TEXTURE "Error: Parsing the texture failed\n"
 # define PARSE_MAP "Error: Parsing the map failed\n"
 # define MAP_VALID "Error: The map is not valid\n"

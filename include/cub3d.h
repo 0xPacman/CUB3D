@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/03 15:40:11 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:52:42 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ void    init_controls(t_engine *engine);
 int     ESC(t_engine *engine);
 
 // parsing functions
-void   print_error(int error);
 
 
 #endif
