@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:51:35 by ahjadani          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/02/02 21:48:11 by ahjadani         ###   ########.fr       */
-=======
-/*   Updated: 2023/02/02 16:51:04 by roudouch         ###   ########.fr       */
->>>>>>> 79e9fbd5223b7c401d461912112d6d5d62f7f72d
+/*   Updated: 2023/02/03 10:06:01 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +86,8 @@ int main(int ac, char **av) {
         print_error(0);
         return (0);
     }
-<<<<<<< HEAD
-    (void)av;
-
-
-=======
 
     start_engine();
     
->>>>>>> 79e9fbd5223b7c401d461912112d6d5d62f7f72d
     return (0);
 } 
