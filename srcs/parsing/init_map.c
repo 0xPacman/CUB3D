@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/03 15:40:49 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:06:37 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ t_file *parse_file(int fd, t_file *file, char *path)
     {
         line = get_next_line(fd);
         printf("GNL: %s\n", line);
-        if (!line || !parse_rgb(line, file) /*|| !parse_texture(line, file) || !parse_map(line, file)*/)
-            return (print_error(5) , NULL);
+        parse_rgb(line, file);
+
         
     }
     return file;
@@ -64,7 +64,7 @@ t_file *init_map(int fd, char *path)
     
     file = malloc(sizeof(t_file));
     if (!file)
-        return (print_error(3) , NULL);
+        return (ERROR(ALLOCATE_ERROR) , NULL);
     first_init_colors(file);
     file->north = NULL;
     file->south = NULL;
