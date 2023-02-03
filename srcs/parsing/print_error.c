@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 21:49:27 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/02 21:49:28 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:37:00 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void   print_error(int error)
 {
     if (error == 0)
-        ft_putstr_fd("Error: Wrong arguments\n", 2);
+        ft_putstr_fd("Error: Invalid arguments\n", 2);
     else if (error == 1)
-        ft_putstr_fd("Error: Wrong file extension\n", 2);
+        ft_putstr_fd("Error: Memory allocation failed\n", 2);
     else if (error == 2)
-        ft_putstr_fd("Error: Wrong file format\n", 2);
+        ft_putstr_fd("Error: Failed to read the file\n", 2);
     else if (error == 3)
         ft_putstr_fd("Error: Memory allocation failed\n", 2);
     else if (error == 4)

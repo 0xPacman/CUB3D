@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:51:35 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/03 10:06:01 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/03 10:44:41 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,22 +71,20 @@ int check_cub(char *filename)
     if (!splitted)
         return (0);
     if (!ft_strncmp(splitted[ft_tablen(splitted) - 1], "cub", 3))
-    {
-        ft_free_tab(splitted);
-        return (1);
-    }
-    ft_free_tab(splitted);
-    return (0);
+        return (ft_free_tab(splitted), 1);
+    return (ft_free_tab(splitted), 0);
 }
 
-int main(int ac, char **av) {
-
+int main(int ac, char **av) 
+{
+    int fd;
+    t_file *file;
     if (ac != 2 || !check_cub(av[1]))
-    {
-        print_error(0);
-        return (0);
-    }
-
+        return (print_error(0), 2);
+    fd = open(av[1], O_RDONLY);
+    if (fd == -1)
+        return (print_error(2), 2);
+    file = init_file(fd, av[1]);
     start_engine();
     
     return (0);
