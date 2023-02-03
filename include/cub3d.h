@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/03 10:49:01 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/03 15:13:53 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+// boolean
 #define bool int
 #define true 1
 #define false 0
@@ -34,6 +35,11 @@
 #define KEY_RIGHT 124
 #define KEY_ESC 53
 
+// screen size
+#define SCREEN_WIDTH 1280
+#define SCREEN_HEIGHT 720
+
+// map for testing
 extern char map[24][24];
 
 typedef struct rgb {
