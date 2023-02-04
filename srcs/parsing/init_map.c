@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/03 21:11:48 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/04 16:56:03 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,80 @@ char *ft_rmspaces(char *str)
     }
     return (new);
 }
+void fill_rgb(char *line, t_file *file)
+{
+    char *rgbline;
+    char **split_rgb = NULL;
+    int i;
+
+    i = 0;
+    rgbline = line + 1;
+    if (line[0] == 'F')
+    {
+        split_rgb = ft_split(rgbline, ',');
+        i = 0;
+        while(split_rgb[i])
+        {
+            file->floor.r = ft_atoi(split_rgb[0]);
+            file->floor.g = ft_atoi(split_rgb[1]);
+            file->floor.b = ft_atoi(split_rgb[2]);
+            i++;
+        }
+        if (i != 3)
+        {
+            ERROR(INVALID_RGB);
+            exit(1);
+        }
+            
+    }
+    if (line[0] == 'C')
+    {
+        split_rgb = ft_split(rgbline, ',');
+        i = 0;
+        while(split_rgb[i])
+        {
+            file->ceiling.r = ft_atoi(split_rgb[0]);
+            file->ceiling.g = ft_atoi(split_rgb[1]);
+            file->ceiling.b = ft_atoi(split_rgb[2]);
+            i++;
+        }
+        if (i != 3)
+        {
+            ERROR(INVALID_RGB);
+            exit(1);
+        }
+    }
+}
+
+void check_rgb_limits(t_file *file)
+{
+    //printf("|F:%d,%d,%d|\n|C:%d,%d,%d|\n", file->floor.r, file->floor.g, file->floor.b, file->ceiling.r, file->ceiling.g, file->ceiling.b);
+    if (file->floor.r > 255 || file->floor.r < 0 || file->floor.g > 255 || file->floor.g < 0 || file->floor.b > 255 || file->floor.b < 0)
+    {
+        ERROR(INVALID_RGB);
+        exit(1);
+    }
+    if (file->ceiling.r > 255 || file->ceiling.r < 0 || file->ceiling.g > 255 || file->ceiling.g < 0 || file->ceiling.b > 255 || file->ceiling.b < 0)
+    {
+        ERROR(INVALID_RGB);
+        exit(1);
+    }
+}
 
 int parse_rgb(char **split_line, t_file *file)
 {
-    // remove spaces and join all the splitted line into one string
-    (void)file;
-    // for (int i = 0; split_line[i]; i++)
-    //     printf("split_line[%d]:%s \n", i, split_line[i]);
     char *line;
+    
     line = ft_strjoin("", "");
-    char **split_rgb;
+    
     int i = 0;
     while (split_line[i])
     {
         line = ft_strjoin(line, split_line[i]);
         i++;
     }
-    if (line[0] == 'F')
-        split_rgb = ft_split(line, ',');
-    else if (line[0] == 'C')
-    split_rgb = ft_split(line, ',');
-    printf("line:%s \n", line+1);
+    fill_rgb(line, file);
+    check_rgb_limits(file);
     return (0);
 }
 
@@ -71,6 +124,7 @@ int parse_texture(int fd, t_file *file)
     char **split_line;
     while ((line = get_next_line(fd)))
     {
+        file->line_count++;
         int i = 0;
         while (ft_isspace(line[i]))
             i++;
@@ -100,22 +154,55 @@ int parse_texture(int fd, t_file *file)
     return (0);
 }
 
+int check_init(t_file *file)
+{
+    if (!file->north || !file->south || !file->east || !file->west)
+        return (ERROR(INVALID_TEXTURE) , 0);
+    return (1);
+}
+
+int check_first_line(char *line)
+{
+    int i = 0;
+    int len = ft_strlen(line);
+    
+    return (1);
+}
+
+int map_reader(int fd, t_file *file)
+{
+    char *line;
+    //int map_len;
+    if (check_init(file))
+    {
+        while((line = get_next_line(fd)))
+        {
+            if (check_first_line(line))
+                printf("checked\n");
+            
+        }
+    }
+    return (0);
+}
+
 int parse_file(int fd, t_file *file)
 {
     parse_texture(fd, file);
-    printf("|NO:%s|\n|SO:%s|\n|EA:%s|\n|WE:%s|\n", file->north, file->south, file->east, file->west);
-    printf("|F:%d,%d,%d|\n|C:%d,%d,%d|\n", file->floor.r, file->floor.g, file->floor.b, file->ceiling.r, file->ceiling.g, file->ceiling.b);
+    map_reader(fd, file);
+    // printf("|NO:%s|\n|SO:%s|\n|EA:%s|\n|WE:%s|\n", file->north, file->south, file->east, file->west);
+    // printf("|F:%d,%d,%d|\n|C:%d,%d,%d|\n", file->floor.r, file->floor.g, file->floor.b, file->ceiling.r, file->ceiling.g, file->ceiling.b);
+    printf("line count: %d\n", file->line_count);
     return (1);
 }
 
 void   first_init_colors(t_file *file)
 {
-    file->floor.r = -1;
-    file->floor.g = -1;
-    file->floor.b = -1;
-    file->ceiling.r = -1;
-    file->ceiling.g = -1;
-    file->ceiling.b = -1;
+    file->floor.r = 0;
+    file->floor.g = 0;
+    file->floor.b = 0;
+    file->ceiling.r = 0;
+    file->ceiling.g = 0;
+    file->ceiling.b = 0;
 }
 
 t_file *init_map(int fd)
