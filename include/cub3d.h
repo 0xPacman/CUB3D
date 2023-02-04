@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/04 15:08:08 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:08:16 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,11 @@
 
 // map for testing
 extern char map[24][24];
+
+typedef struct s_victor {
+    int x;
+    int y;
+}               t_victor;
 
 typedef struct rgb {
     int r;
