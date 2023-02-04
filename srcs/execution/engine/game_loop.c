@@ -6,26 +6,57 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/03 17:02:06 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:33:26 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
 
-int color = 0x00FF00;
+void   draw_square(t_engine *engine, int x, int y, int size, int color) {
+    int i;
+    int j;
+
+    i = 0;
+    while (i < size) {
+        j = 0;
+        while (j < size) {
+            put_pixel(&engine->img, x + j, y + i, color);
+            j++;
+        }
+        i++;
+    }
+}
+
+void draw_map(t_engine *engine) {
+    int x;
+    int y;
+
+    y = 0;
+    while (y < MAP_HEIGHT) {
+        x = 0;
+        while (x < MAP_WIDTH) {
+            if (map[y][x] == '1')
+                draw_square(engine, x * 10, y * 10, 10, 0xB2D6EA);
+            else 
+                draw_square(engine, x * 10, y * 10, 10, 0x0078BA);
+            x++;
+        }
+        y++;
+    }
+}
+
+void draw_rays(t_engine *engine) {
+    (void)engine;
+}
 
 int frame(t_engine *engine) {
     // clear the window
     mlx_clear_window(engine->mlx, engine->win);
 
-	/// draw background
-	for (int y = 0; y < SCREEN_HEIGHT; y++) {
-		for (int x = 0; x < SCREEN_WIDTH; x++) {
-			put_pixel(&engine->img, x, y, color);
-			color += 0x000001;
-		}
-	}
-    
+	/// draw mini map
+    draw_map(engine);
+    // draw rayes on the map from the player
+    draw_rays(engine);
     // put the image to the window
     mlx_put_image_to_window(engine->mlx, engine->win, engine->img.img, 0, 0);
     return (0);

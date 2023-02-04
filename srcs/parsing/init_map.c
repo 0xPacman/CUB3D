@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/04 16:56:03 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:22:11 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,6 +165,8 @@ int check_first_line(char *line)
 {
     int i = 0;
     int len = ft_strlen(line);
+    (void)len;
+    (void)i;
     
     return (1);
 }
