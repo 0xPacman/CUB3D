@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/03 17:21:02 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/04 10:33:07 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,22 @@
 # include <unistd.h>
 
 // boolean
-#define bool int
-#define true 1
-#define false 0
+# define bool int
+# define true 1
+# define false 0
 
 // keys
-#define KEY_W 13
-#define KEY_A 0
-#define KEY_S 1
-#define KEY_D 2
-#define KEY_LEFT 123
-#define KEY_RIGHT 124
-#define KEY_ESC 53
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+# define KEY_ESC 53
 
 // screen size
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 720
+# define SCREEN_WIDTH 1280
+# define SCREEN_HEIGHT 720
 
 // map for testing
 extern char map[24][24];
@@ -89,7 +89,7 @@ typedef struct s_ray {
     int     side;
 }               t_ray;
 
-typedef struct controls {
+typedef struct s_controls {
     int     w;
     int     a;
     int     s;
@@ -99,18 +99,30 @@ typedef struct controls {
     int     esc;
 }               t_controls;
 
+typedef struct s_image {
+	void    *img;
+	char    *addr;
+	int     bits_per_pixel;
+	int     line_length;
+	int     endian;
+}               t_image;
+
+
 typedef struct s_engine {
     void        *mlx;
     void        *win;
     t_player    *player;
     t_ray       *ray;
     t_controls  *controls;
+	t_image     img;
 }               t_engine;
 
 // execution functions
 void    start_engine(void);
 void    init_controls(t_engine *engine);
-int     ESC(t_engine *engine);
+void    game_loop(t_engine *engine);
+void   put_pixel(t_image *img, int x, int y, int color);
+
 
 // parsing functions
 t_file *init_map(int fd);

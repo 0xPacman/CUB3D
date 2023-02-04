@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/03 15:49:56 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:58:10 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,9 @@ void    start_engine(void) {
         engine->mlx = mlx_init();
         engine->win = mlx_new_window(engine->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D");
         init_controls(engine);
-        
+        game_loop(engine);
         mlx_loop(engine->mlx);
+        
     } else {
         ERROR(INIT_ENGINE);
         exit(EXIT_FAILURE);

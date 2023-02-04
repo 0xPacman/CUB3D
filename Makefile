@@ -18,6 +18,8 @@ GFLAGS 	= 	-lmlx -framework OpenGL -framework AppKit
 SRCS	=	cub3d.c \
 			./srcs/execution/engine/engine.c \
 			./srcs/execution/controls/controls.c \
+			./srcs/execution/engine/game_loop.c \
+			./srcs/execution/engine/utils/put_pixel.c \
 			./srcs/parsing/init_map.c \
 			./srcs/parsing/get_next_line/get_next_line.c \
 			./srcs/parsing/get_next_line/get_next_line_utils.c

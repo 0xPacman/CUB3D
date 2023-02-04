@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:06:22 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/03 15:20:55 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:09:09 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,6 @@ void init_keys(t_engine *engine) {
 }
 
 void init_controls(t_engine *engine) {
-	engine->controls = malloc(sizeof(t_controls));
-	if (!engine->controls)
-		exit(EXIT_FAILURE);
 	init_keys(engine);
     mlx_hook(engine->win, 2, 1L<<0, key_press, engine);
     mlx_hook(engine->win, 3, 1L<<1, key_release, engine);
