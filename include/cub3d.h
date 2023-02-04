@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/03 16:59:43 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/04 10:33:07 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ void   put_pixel(t_image *img, int x, int y, int color);
 
 
 // parsing functions
-t_file *init_map(int fd, char *path);
+t_file *init_map(int fd);
 
 
 #endif

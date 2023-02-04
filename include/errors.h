@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:26:47 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/03 15:53:52 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/03 16:34:29 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # define MAP_VALID "Error: The map is not valid\n"
 # define PLAYER_VALID "Error: The player is not valid\n"
 # define UNKNOWN_ERROR "Error: Unknown error\n"
+# define INVALID_RGB "Error: Invalid RGB\n"
+# define INVALID_TEXTURE "Error: Invalid texture\n"
+
 
 // define the print error function as a macro
 # define ERROR(x) ft_putstr_fd(x, 2)
