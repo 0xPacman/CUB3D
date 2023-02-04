@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/03 16:04:26 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/03 17:21:02 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void    init_controls(t_engine *engine);
 int     ESC(t_engine *engine);
 
 // parsing functions
-t_file *init_map(int fd, char *path);
+t_file *init_map(int fd);
 
 
 #endif
