@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/04 17:33:26 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/05 15:21:09 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,30 @@ void draw_rays(t_engine *engine) {
     (void)engine;
 }
 
+void   check_controls(t_engine *engine) {
+    if (engine->controls.w)
+        move_forward(engine);
+    if (engine->controls.s)
+        move_backward(engine);
+    if (engine->controls.left)
+        rotate_left(engine);
+    if (engine->controls.right)
+        rotate_right(engine);
+}
+
 int frame(t_engine *engine) {
     // clear the window
     mlx_clear_window(engine->mlx, engine->win);
 
 	/// draw mini map
     draw_map(engine);
+
+    // draw the player
+    draw_square(engine, engine->player.pos.x * 10, engine->player.pos.y * 10, 10, 0xFF0000);
+    
+    // check for controls
+    check_controls(engine);
+    
     // draw rayes on the map from the player
     draw_rays(engine);
     // put the image to the window

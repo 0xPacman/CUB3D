@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/05 14:08:39 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/05 15:25:09 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,15 @@ extern char map[24][24];
 #define MAP_WIDTH 24
 #define MAP_HEIGHT 24
 
-typedef struct s_victor {
-    int x;
-    int y;
-}               t_victor;
+typedef struct s_vector {
+    float   x;
+    float   y;
+}               t_vector;
+
+typedef struct s_point {
+    float x;
+    float y;
+}               t_point;
 
 typedef struct rgb {
     int r;
@@ -74,14 +79,11 @@ typedef struct s_file {
 }               t_file;
 
 typedef struct s_player {
-    float   x;
-    float   y;
-    float   dir_x;
-    float   dir_y;
-    float   plane_x;
-    float   plane_y;
-	float   move_speed;
-	float   rot_speed;
+    t_point     pos;
+    t_vector    dir;
+    t_vector    plane;
+	float       move_speed;
+	float       rot_speed;
 }               t_player;
 
 typedef struct s_ray {
@@ -123,9 +125,9 @@ typedef struct s_image {
 typedef struct s_engine {
     void        *mlx;
     void        *win;
-    t_player    *player;
+    t_player    player;
     t_ray       *ray;
-    t_controls  *controls;
+    t_controls  controls;
 	t_image     img;
 }               t_engine;
 
@@ -134,6 +136,13 @@ void    start_engine(void);
 void    init_controls(t_engine *engine);
 void    game_loop(t_engine *engine);
 void   put_pixel(t_image *img, int x, int y, int color);
+// movement functions
+void    move_forward(t_engine *engine);
+void    move_backward(t_engine *engine);
+void    move_left(t_engine *engine);
+void    move_right(t_engine *engine);
+void    rotate_left(t_engine *engine);
+void    rotate_right(t_engine *engine);
 
 
 // parsing functions
