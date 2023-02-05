@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/05 14:03:43 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/05 15:17:25 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,7 @@ int check_init(t_file *file)
     return (1);
 }
 
-int check_for_one(char *line)
+int check_for_one(char *line, t_file *file)
 {
     int i = 0;
     int len = ft_strlen(line);
@@ -136,7 +136,9 @@ int check_for_one(char *line)
             if (line[i] == 'F' || line[i] == 'C')
                 return (0);
             if (line[i] == '1')
-                return (1);
+            {
+                return ((file->flag = 1), 1);
+            }
             i++;
         }
         if (i == len)
@@ -149,7 +151,13 @@ void map_reader(char *line, t_file *file)
 {
     if (check_init(file))
     {
-        if (check_for_one(line))
+        //printf("%s - %d\n", line, !ft_strchr(line, '1'));
+        if (file->flag == 1 && !check_for_one(line, file))
+        {
+            file->map[file->map_len] = ft_strjoin("", line);
+            file->map_len++;
+        }
+        else if (check_for_one(line, file))
         {
             file->map[file->map_len] = ft_strjoin("", line);
             file->map_len++;
@@ -169,8 +177,7 @@ int parse_texture(int fd, t_file *file)
             i++;
         if (line[i] == '\0')
         {
-            free(line);
-            continue;
+            line = ft_strdup("[EMPTY LINE]");
         }
         split_line = ft_split(line + i, ' ');
         if (split_line[0][0] == 'W' && split_line[0][1] == 'E')
@@ -331,6 +338,7 @@ t_file *init_map(int fd)
     file->pos_y = 0;
     file->line_count = 0;
     file->map_len = 0;
+    file->flag = 0;
     file->map = malloc(sizeof(char *) * 100);
     if (parse_file(fd, file))
         return (NULL);

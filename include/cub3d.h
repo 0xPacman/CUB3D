@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/05 14:03:28 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/05 14:08:39 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_file {
     float   pos_y;
     int     line_count;
     int     map_len;
+    int     flag;
     
 }               t_file;
 
