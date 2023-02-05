@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/04 16:56:03 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/05 13:54:38 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,45 @@ int parse_rgb(char **split_line, t_file *file)
     return (0);
 }
 
+int check_init(t_file *file)
+{
+    if (!file->north || !file->south || !file->east || !file->west)
+        return (0);
+    return (1);
+}
+
+int check_for_one(char *line)
+{
+    int i = 0;
+    int len = ft_strlen(line);
+    if (len >= 1)
+    {
+        while (line[i])
+        {
+            if (line[i] == 'F' || line[i] == 'C')
+                return (0);
+            if (line[i] == '1')
+                return (1);
+            i++;
+        }
+        if (i == len)
+            return (0);
+    }
+    return (0);
+}
+
+void map_reader(char *line, t_file *file)
+{
+    if (check_init(file))
+    {
+        if (check_for_one(line))
+        {
+            file->map[file->map_len] = ft_strjoin("", line);
+            file->map_len++;
+        }
+    }
+}
+
 int parse_texture(int fd, t_file *file)
 {
     char *line;
@@ -148,50 +187,120 @@ int parse_texture(int fd, t_file *file)
         {
             ft_split_free(split_line);
             free(line);
-            return (ERROR(INVALID_TEXTURE) , 1);
         }
+        map_reader(line, file);
     }
     return (0);
 }
 
-int check_init(t_file *file)
+int is0or1(char c)
 {
-    if (!file->north || !file->south || !file->east || !file->west)
-        return (ERROR(INVALID_TEXTURE) , 0);
-    return (1);
+    if (c == '0' || c == '1')
+        return (1);
+    return (0);
 }
 
-int check_first_line(char *line)
+void map_validator(char **map)
 {
     int i = 0;
-    int len = ft_strlen(line);
-    
+    int j = 0;
+    i = 0;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+        {
+            if (map[i][j] == '0' || map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
+            {
+                if (!is0or1(map[i][j - 1]) && !is0or1(map[i][j + 1]) && !is0or1(map[i - 1][j]) && !is0or1(map[i + 1][j]))
+                {
+                    printf("map error at %d,%d\n", i, j);
+                    ERROR(INVALID_MAP);
+                    exit(1);
+                }
+            }
+            j++;
+        }
+        i++;
+    }
+}
+
+
+
+int map_checker(char **map)
+{
+    int i = 0;
+    int j = 0;
+    int player_count = 0;
+    int valid_char = 0;
+    int unvalid_char = 0;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+        {
+            
+            if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W' 
+            || map[i][j] == '0' || map[i][j] == '1' || map[i][j] == ' ' || map[i][j] == '\n')
+                valid_char++;
+            else
+                unvalid_char++;
+            if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W')
+                player_count++;
+            j++;
+        }
+        i++;
+    }
+    if (unvalid_char != 0 || player_count != 1)
+    {
+        if (unvalid_char != 0)
+            ERROR(INVALID_MAP);
+        if (player_count != 1)
+            ERROR(INVALID_PLAYER);
+        exit(1);
+    }
     return (1);
 }
 
-int map_reader(int fd, t_file *file)
+void recheck_map(char **map)
 {
-    char *line;
-    //int map_len;
-    if (check_init(file))
+    // check if there '1' in every line
+    int i = 0;
+    int j = 0;
+    while (map[i])
     {
-        while((line = get_next_line(fd)))
+        printf("line %d: %s\n", i, map[i]);
+        j = 0;
+        while (map[i][j])
         {
-            if (check_first_line(line))
-                printf("checked\n");
-            
+            if (map[i][j] == '1')
+                break;
+            j++;
         }
+        if (map[i][j] == '\0')
+        {
+            printf("map error at %d,%d\n", i, j);
+            ERROR(INVALID_MAP);
+            exit(1);
+        }
+        i++;
     }
-    return (0);
 }
 
 int parse_file(int fd, t_file *file)
 {
     parse_texture(fd, file);
-    map_reader(fd, file);
+    //map_reader(fd, file);
     // printf("|NO:%s|\n|SO:%s|\n|EA:%s|\n|WE:%s|\n", file->north, file->south, file->east, file->west);
     // printf("|F:%d,%d,%d|\n|C:%d,%d,%d|\n", file->floor.r, file->floor.g, file->floor.b, file->ceiling.r, file->ceiling.g, file->ceiling.b);
-    printf("line count: %d\n", file->line_count);
+    // printf("line count: %d\n", file->line_count);
+    // for (int i = 0; i < file->map_len; i++)
+    // {
+    //     printf("MAP: %s", file->map[i]);
+    // }
+    map_checker(file->map);
+    map_validator(file->map);
+    recheck_map(file->map);
     return (1);
 }
 
@@ -220,6 +329,9 @@ t_file *init_map(int fd)
     file->map = NULL;
     file->pos_x = 0;
     file->pos_y = 0;
+    file->line_count = 0;
+    file->map_len = 0;
+    file->map = malloc(sizeof(char *) * 100);
     if (parse_file(fd, file))
         return (NULL);
     return file;

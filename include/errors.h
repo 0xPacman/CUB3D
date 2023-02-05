@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:26:47 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/04 13:00:04 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/05 12:01:32 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@
 # define UNKNOWN_ERROR "Error: Unknown error\n"
 # define INVALID_RGB "Error: Invalid RGB\n"
 # define INVALID_TEXTURE "Error: Invalid texture\n"
-
+# define INVALID_MAP "Error: Invalid map\n"
+# define INVALID_PLAYER "Error: Invalid player\n"
 
 // define the print error function as a macro
 # define ERROR(x) ft_putstr_fd(x, 2)
