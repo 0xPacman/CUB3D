@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/04 17:02:17 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/04 17:30:02 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,17 @@ void    start_engine(void) {
     engine = malloc(sizeof(t_engine));
     if (engine && init_engine(engine)) {
         
+        // for testing purposes
+        engine->player->x = 22;
+        engine->player->y = 12;
+        engine->player->dir_x = -1;
+        engine->player->dir_y = 0;
+        engine->player->plane_x = 0;
+        engine->player->plane_y = 0.66;
+        engine->player->move_speed = 0.05;
+        engine->player->rot_speed = 0.05;
+        
+
         init_controls(engine);
         game_loop(engine);
         mlx_loop(engine->mlx);

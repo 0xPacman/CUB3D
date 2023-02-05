@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/05 09:07:37 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/05 14:03:28 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 
 // map for testing
 extern char map[24][24];
+#define MAP_WIDTH 24
+#define MAP_HEIGHT 24
 
 typedef struct s_victor {
     int x;
@@ -77,6 +79,8 @@ typedef struct s_player {
     float   dir_y;
     float   plane_x;
     float   plane_y;
+	float   move_speed;
+	float   rot_speed;
 }               t_player;
 
 typedef struct s_ray {
