@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/05 15:17:25 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/05 20:24:57 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,24 +23,6 @@ void ft_split_free(char **split)
     free(split);
 }
 
-char *ft_rmspaces(char *str)
-{
-    int i = 0;
-    int j = 0;
-    char *new;
-
-    new = malloc(sizeof(char) * ft_strlen(str) + 1);
-    while (str[i])
-    {
-        if (!ft_isspace(str[i]))
-        {
-            new[j] = str[i];
-            j++;
-        }
-        i++;
-    }
-    return (new);
-}
 void fill_rgb(char *line, t_file *file)
 {
     char *rgbline;
@@ -88,13 +70,14 @@ void fill_rgb(char *line, t_file *file)
 
 void check_rgb_limits(t_file *file)
 {
-    //printf("|F:%d,%d,%d|\n|C:%d,%d,%d|\n", file->floor.r, file->floor.g, file->floor.b, file->ceiling.r, file->ceiling.g, file->ceiling.b);
-    if (file->floor.r > 255 || file->floor.r < 0 || file->floor.g > 255 || file->floor.g < 0 || file->floor.b > 255 || file->floor.b < 0)
+    if (file->floor.r > 255 || file->floor.r < 0 || file->floor.g > 255 
+    || file->floor.g < 0 || file->floor.b > 255 || file->floor.b < 0)
     {
         ERROR(INVALID_RGB);
         exit(1);
     }
-    if (file->ceiling.r > 255 || file->ceiling.r < 0 || file->ceiling.g > 255 || file->ceiling.g < 0 || file->ceiling.b > 255 || file->ceiling.b < 0)
+    if (file->ceiling.r > 255 || file->ceiling.r < 0 || file->ceiling.g > 255 
+    || file->ceiling.g < 0 || file->ceiling.b > 255 || file->ceiling.b < 0)
     {
         ERROR(INVALID_RGB);
         exit(1);
@@ -151,7 +134,6 @@ void map_reader(char *line, t_file *file)
 {
     if (check_init(file))
     {
-        //printf("%s - %d\n", line, !ft_strchr(line, '1'));
         if (file->flag == 1 && !check_for_one(line, file))
         {
             file->map[file->map_len] = ft_strjoin("", line);
@@ -177,10 +159,15 @@ int parse_texture(int fd, t_file *file)
             i++;
         if (line[i] == '\0')
         {
-            line = ft_strdup("[EMPTY LINE]");
+            line = ft_strdup("[]");
         }
         split_line = ft_split(line + i, ' ');
-        if (split_line[0][0] == 'W' && split_line[0][1] == 'E')
+        if (line[i] == '1' && !check_init(file))
+        {
+            ERROR(INVALID_MAP);
+            exit(1);
+        }
+        else if (split_line[0][0] == 'W' && split_line[0][1] == 'E')
             file->west = ft_strjoin("", ft_strtrim(split_line[1], " \n\t\v\f\r"));
         else if (split_line[0][0] == 'E' && split_line[0][1] == 'A')
             file->east = ft_strjoin("", ft_strtrim(split_line[1], " \n\t\v\f\r"));
@@ -271,24 +258,17 @@ int map_checker(char **map)
 
 void recheck_map(char **map)
 {
-    // check if there '1' in every line
     int i = 0;
     int j = 0;
     while (map[i])
     {
-        printf("line %d: %s\n", i, map[i]);
+        printf("line %d: %s", i, map[i]);
         j = 0;
         while (map[i][j])
         {
             if (map[i][j] == '1')
                 break;
             j++;
-        }
-        if (map[i][j] == '\0')
-        {
-            printf("map error at %d,%d\n", i, j);
-            ERROR(INVALID_MAP);
-            exit(1);
         }
         i++;
     }
@@ -297,14 +277,6 @@ void recheck_map(char **map)
 int parse_file(int fd, t_file *file)
 {
     parse_texture(fd, file);
-    //map_reader(fd, file);
-    // printf("|NO:%s|\n|SO:%s|\n|EA:%s|\n|WE:%s|\n", file->north, file->south, file->east, file->west);
-    // printf("|F:%d,%d,%d|\n|C:%d,%d,%d|\n", file->floor.r, file->floor.g, file->floor.b, file->ceiling.r, file->ceiling.g, file->ceiling.b);
-    // printf("line count: %d\n", file->line_count);
-    // for (int i = 0; i < file->map_len; i++)
-    // {
-    //     printf("MAP: %s", file->map[i]);
-    // }
     map_checker(file->map);
     map_validator(file->map);
     recheck_map(file->map);
@@ -339,7 +311,7 @@ t_file *init_map(int fd)
     file->line_count = 0;
     file->map_len = 0;
     file->flag = 0;
-    file->map = malloc(sizeof(char *) * 100);
+    file->map = malloc(sizeof(char *) * 10000);
     if (parse_file(fd, file))
         return (NULL);
     return file;
