@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/06 11:07:19 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/11 17:58:58 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,15 @@ void   check_controls(t_engine *engine) {
         move_forward(engine);
     if (engine->controls.s)
         move_backward(engine);
+    if (engine->controls.a)
+        move_left(engine);
+    if (engine->controls.d)
+        move_right(engine);
     if (engine->controls.left)
         rotate_left(engine);
     if (engine->controls.right)
         rotate_right(engine);
+    
 }
 
 int frame(t_engine *engine) {

@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:06:22 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/05 14:09:20 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/06 14:44:24 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int	key_press(int keycode, t_engine *engine) {
     if (keycode == KEY_S)
         engine->controls.s = true;
     if (keycode == KEY_A)
-        engine->controls.left = true;
+        engine->controls.a = true;
     if (keycode == KEY_D)
-        engine->controls.right = true;
+        engine->controls.d = true;
     if (keycode == KEY_LEFT)
         engine->controls.left = true;
     if (keycode == KEY_RIGHT)
@@ -45,9 +45,9 @@ int	key_release(int keycode, t_engine *engine) {
     if (keycode == KEY_S)
         engine->controls.s = false;
     if (keycode == KEY_A)
-        engine->controls.left = false;
+        engine->controls.a = false;
     if (keycode == KEY_D)
-        engine->controls.right = false;
+        engine->controls.d = false;
     if (keycode == KEY_LEFT)
         engine->controls.left = false;
     if (keycode == KEY_RIGHT)
