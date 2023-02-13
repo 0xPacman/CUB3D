@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/13 14:40:51 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:07:05 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ void draw_rays(t_engine *engine) {
 int frame(t_engine *engine) {
     // clear the window
     mlx_clear_window(engine->mlx, engine->win);
+    
+    // check for controls
+    check_controls(engine);
+
+    // draw rayes on the map from the player
+    start_casting(engine);
 
 	/// draw mini map
     draw_map(engine);
@@ -26,11 +32,6 @@ int frame(t_engine *engine) {
     // draw the player 
     draw_square(engine, engine->player.pos.x * 10, engine->player.pos.y * 10, 10, 0xFF0000);
     
-    // check for controls
-    check_controls(engine);
-    
-    // draw rayes on the map from the player
-    draw_rays(engine);
     // put the image to the window
     mlx_put_image_to_window(engine->mlx, engine->win, engine->img.img, 0, 0);
     return (0);

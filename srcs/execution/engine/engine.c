@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/06 10:49:18 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:19:53 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,14 @@
 bool   init_engine(t_engine *engine) {
     engine->mlx = NULL;
     engine->win = NULL;
-    engine->ray = NULL;
-    engine->ray = malloc(sizeof(t_ray));
     engine->mlx = mlx_init();
-    if (engine->mlx && engine->ray) {
+    if (engine->mlx) {
         engine->win = mlx_new_window(engine->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "Wolf4D");
         if (engine->win)
             return (true);
     }
     if (engine->win)
         mlx_destroy_window(engine->mlx, engine->win);
-    free(engine->ray);
     return (false);
 }
 
@@ -42,8 +39,8 @@ void    start_engine(void) {
         engine->player.dir.y = 0;
         engine->player.plane.x = 0;
         engine->player.plane.y = 0.66;
-        engine->player.move_speed = 0.05;
-        engine->player.rot_speed = 0.02;
+        engine->player.move_speed = 0.06;
+        engine->player.rot_speed = 0.03;
         
 
         init_controls(engine);

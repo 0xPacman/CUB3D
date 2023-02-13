@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:06:22 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/13 14:40:49 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:56:05 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int close_game(t_engine *engine) {
     mlx_destroy_window(engine->mlx, engine->win);
-    free(engine->ray);
-    engine->ray = NULL;
     free(engine);
     engine = NULL;
     exit(EXIT_SUCCESS);

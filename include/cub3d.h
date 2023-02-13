@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/13 14:40:43 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/13 15:59:41 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,19 +88,18 @@ typedef struct s_player {
 
 typedef struct s_ray {
     float   camera_x;
-    float   ray_dir_x;
-    float   ray_dir_y;
-    int     map_x;
-    int     map_y;
-    float   side_dist_x;
-    float   side_dist_y;
-    float   delta_dist_x;
-    float   delta_dist_y;
+    t_point dir;
+    t_point map;
+    t_point side_dist;
+    t_point delta_dist;
     float   perp_wall_dist;
-    int     step_x;
-    int     step_y;
+    t_point step;
     int     hit;
     int     side;
+    int     line_height;
+    int     draw_start;
+    int     draw_end;
+    int     color;
 }               t_ray;
 
 typedef struct s_controls {
@@ -126,7 +125,7 @@ typedef struct s_engine {
     void        *mlx;
     void        *win;
     t_player    player;
-    t_ray       *ray;
+    t_ray       ray;
     t_controls  controls;
 	t_image     img;
 }               t_engine;
@@ -147,6 +146,7 @@ void   check_controls(t_engine *engine);
 // minimap system functions
 void    draw_square(t_engine *engine, int x, int y, int size, int color);
 void    draw_map(t_engine *engine);
+void    start_casting(t_engine *engine);
 
 
 // parsing functions
