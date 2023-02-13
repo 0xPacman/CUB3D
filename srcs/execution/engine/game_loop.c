@@ -3,66 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/11 17:58:58 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:40:51 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
 
-void   draw_square(t_engine *engine, int x, int y, int size, int color) {
-    int i;
-    int j;
-
-    i = 0;
-    while (i < size) {
-        j = 0;
-        while (j < size) {
-            put_pixel(&engine->img, x + j, y + i, color);
-            j++;
-        }
-        i++;
-    }
-}
-
-void draw_map(t_engine *engine) {
-    int x;
-    int y;
-
-    y = 0;
-    while (y < MAP_HEIGHT) {
-        x = 0;
-        while (x < MAP_WIDTH) {
-            if (map[y][x] == '1')
-                draw_square(engine, x * 10, y * 10, 10, 0xB2D6EA);
-            else 
-                draw_square(engine, x * 10, y * 10, 10, 0x0078BA);
-            x++;
-        }
-        y++;
-    }
-}
-
 void draw_rays(t_engine *engine) {
     (void)engine;
-}
-
-void   check_controls(t_engine *engine) {
-    if (engine->controls.w)
-        move_forward(engine);
-    if (engine->controls.s)
-        move_backward(engine);
-    if (engine->controls.a)
-        move_left(engine);
-    if (engine->controls.d)
-        move_right(engine);
-    if (engine->controls.left)
-        rotate_left(engine);
-    if (engine->controls.right)
-        rotate_right(engine);
-    
 }
 
 int frame(t_engine *engine) {

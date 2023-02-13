@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/05 15:25:09 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/02/13 14:40:43 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,10 @@ void    move_left(t_engine *engine);
 void    move_right(t_engine *engine);
 void    rotate_left(t_engine *engine);
 void    rotate_right(t_engine *engine);
+void   check_controls(t_engine *engine);
+// minimap system functions
+void    draw_square(t_engine *engine, int x, int y, int size, int color);
+void    draw_map(t_engine *engine);
 
 
 // parsing functions
