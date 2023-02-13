@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:06:22 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/06 14:44:24 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/07 13:37:01 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	key_release(int keycode, t_engine *engine) {
 void init_keys(t_engine *engine) {
 	engine->controls.w = false;
 	engine->controls.s = false;
+    engine->controls.a = false;
+    engine->controls.d = false;
 	engine->controls.left = false;
 	engine->controls.right = false;
 }
