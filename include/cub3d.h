@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/13 15:59:41 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:23:52 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define bool int
 # define true 1
 # define false 0
+
+// Pi
+# define PI 3.14159265359
 
 // keys
 # define KEY_W 13

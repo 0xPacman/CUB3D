@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/13 16:19:53 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/02/13 16:23:52 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void    start_engine(void) {
         // for testing purposes
         engine->player.pos.x = 22;
         engine->player.pos.y = 12;
-        engine->player.dir.x = -1;
-        engine->player.dir.y = 0;
+        engine->player.dir.x = cos(PI);
+        engine->player.dir.y = sin(PI);
         engine->player.plane.x = 0;
         engine->player.plane.y = 0.66;
         engine->player.move_speed = 0.06;
