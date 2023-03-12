@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:51:35 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/06 14:44:50 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:00:31 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int check_cub(char *filename)
 
 int main(int ac, char **av) 
 {
+    
     int fd;
     t_file *file;
     if (ac != 2 || !check_cub(av[1]))
@@ -85,8 +86,10 @@ int main(int ac, char **av)
     if (fd == -1)
         return (ERROR(OPEN_FILE), 2);
     file = init_map(fd);
+    
     close(fd);
-    start_engine();
+    //printf("%s", file->north);
+    start_engine(file);
     
     return (0);
 }

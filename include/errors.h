@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:26:47 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/05 12:01:32 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/11 16:53:37 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 // define the error messages as macros
 # define ALLOCATE_ERROR "Error: Memory allocation failed."
 # define INIT_ENGINE "Error: Failed to initialize engine!\n"
+# define INIT_TEXTURE "Error: Failed to initialize texture!\n"
 # define INVALID_ARGS "Error: Invalid arguments\n"
 # define READ_FILE "Error: Failed to read the file\n"
 # define OPEN_FILE "Error: Failed to open the file\n"

@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/05 20:24:57 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:34:39 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,9 +260,10 @@ void recheck_map(char **map)
 {
     int i = 0;
     int j = 0;
+    
     while (map[i])
     {
-        printf("line %d: %s", i, map[i]);
+        //printf("line %d: %s", i, map[i]);
         j = 0;
         while (map[i][j])
         {
@@ -312,7 +313,7 @@ t_file *init_map(int fd)
     file->map_len = 0;
     file->flag = 0;
     file->map = malloc(sizeof(char *) * 10000);
-    if (parse_file(fd, file))
+    if (!parse_file(fd, file))
         return (NULL);
     return file;
 }

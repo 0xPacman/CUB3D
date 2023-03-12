@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/02/13 16:23:52 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:50:09 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@
 # define KEY_RIGHT 124
 # define KEY_ESC 53
 
+//sides
+# define WEST 0
+# define EAST 1
+# define NORTH 2
+# define SOUTH 3
+
 // screen size
 # define SCREEN_WIDTH 1280
 # define SCREEN_HEIGHT 720
@@ -48,6 +54,17 @@
 extern char map[24][24];
 #define MAP_WIDTH 24
 #define MAP_HEIGHT 24
+
+// texture struct
+typedef struct s_texture {
+    void    *img;
+    char    *data;
+    int     bits_per_pixel;
+    int     line_len;
+    int     endian;
+    int     width;
+    int     height;
+}               t_texture;
 
 typedef struct s_vector {
     float   x;
@@ -131,10 +148,16 @@ typedef struct s_engine {
     t_ray       ray;
     t_controls  controls;
 	t_image     img;
+    t_texture   *texture;
+    t_file      *file;
+    t_point     tex_pos;
+    float       tex_step;
+    float       tex_range;
+    char        **map;
 }               t_engine;
 
 // execution functions
-void    start_engine(void);
+void    start_engine(t_file *file);
 void    init_controls(t_engine *engine);
 void    game_loop(t_engine *engine);
 void   put_pixel(t_image *img, int x, int y, int color);

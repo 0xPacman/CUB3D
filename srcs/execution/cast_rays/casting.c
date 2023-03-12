@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   casting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:50:05 by roudouch          #+#    #+#             */
-/*   Updated: 2023/02/13 16:18:02 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/12 17:46:56 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void perform_dda(t_engine *engine) {
             engine->ray.side = 1;
         }
         // Check if ray has hit a wall
-        if (map[(int)engine->ray.map.y][(int)engine->ray.map.x] == '1')
+        if (engine->map[(int)engine->ray.map.y][(int)engine->ray.map.x] == '1')
             engine->ray.hit = 1;
     }
 }
@@ -67,9 +67,9 @@ void perform_dda(t_engine *engine) {
 void calculate_wall_dist(t_engine *engine) {
     // Calculate distance projected on camera direction (oblique distance will give fisheye effect!)
     if (engine->ray.side == 0)
-        engine->ray.perp_wall_dist = (engine->ray.map.x - engine->player.pos.x + (1 - engine->ray.step.x) / 2) / engine->ray.dir.x;
+        engine->ray.perp_wall_dist = (engine->ray.side_dist.x - engine->ray.delta_dist.x);
     else
-        engine->ray.perp_wall_dist = (engine->ray.map.y - engine->player.pos.y + (1 - engine->ray.step.y) / 2) / engine->ray.dir.y;
+        engine->ray.perp_wall_dist = (engine->ray.side_dist.y - engine->ray.delta_dist.y);
 }
 
 void calculate_line_height(t_engine *engine) {
@@ -84,9 +84,56 @@ void calculate_line_height(t_engine *engine) {
         engine->ray.draw_end = SCREEN_HEIGHT - 1;
 }
 
+
+int check_side(t_engine *engine) {
+    if (engine->ray.side == 0) {
+        if (engine->ray.dir.x > 0)
+            return (WEST);
+        else
+            return (EAST);
+    } else {
+        if (engine->ray.dir.y > 0)
+            return (NORTH);
+        else
+            return (SOUTH);
+    }
+}
+
+void    calc_tex_x(t_engine *engine, int side) {
+    float wall_x; // where exactly the wall was hit
+    if (engine->ray.side == 0)
+        wall_x = engine->player.pos.y + engine->ray.perp_wall_dist * engine->ray.dir.y;
+    else
+        wall_x = engine->player.pos.x + engine->ray.perp_wall_dist * engine->ray.dir.x;
+    wall_x -= (int)((wall_x));
+    // x coordinate on the texture
+    engine->tex_pos.x = (int)(wall_x * (float)engine->texture[side].width);
+    engine->tex_step = (float)engine->texture[side].height / engine->ray.line_height;
+    if (engine->ray.line_height < SCREEN_HEIGHT) {
+        engine->tex_range = 0;
+    } else 
+        engine->tex_range = ((engine->ray.line_height / 2) - SCREEN_HEIGHT / 2) * engine->tex_step;
+}
+
+unsigned int    get_color(t_texture *t, int x, int y)
+{
+	char	*ptr;
+	int		pixel;
+
+	pixel = (y * t->line_len) + (x * (t->bits_per_pixel / 8));
+	ptr = t->data + pixel;
+    
+    return (((((unsigned char)ptr[2]) << 16) + (((unsigned char)ptr[1]) << 8) + ((unsigned char)ptr[0])));
+}
+
+
 void draw_wall(t_engine *engine, int x) {
     int y;
+    int side;
 
+    // check which side of the wall we are on
+    side = check_side(engine);
+    calc_tex_x(engine, side);
     // draw ceiling
     y = 0;
     while (y < engine->ray.draw_start) {
@@ -97,24 +144,14 @@ void draw_wall(t_engine *engine, int x) {
     // draw wall
     y = engine->ray.draw_start;
     while (y < engine->ray.draw_end) {
-        // choose wall color
-        if (engine->ray.side == 1) {
-            if (engine->ray.dir.y > 0)
-                engine->ray.color = 0x00FF0000; // red
-            else
-                engine->ray.color = 0x0000FF00; // green
-        } else {
-            if (engine->ray.dir.x > 0)
-                engine->ray.color = 0x000000FF; // blue
-            else
-                engine->ray.color = 0xcb0391; // pink
-        }
-        // give x and y sides different brightness
-        if (engine->ray.side == 1)
-            engine->ray.color = (engine->ray.color >> 1) & 8355711;
-        // draw the pixels of the stripe as a vertical line
-        put_pixel(&engine->img, x, y, engine->ray.color);
-        y++;
+        
+        engine->tex_pos.y = (int)engine->tex_range % (engine->texture[side].height);
+        //printf("side: %d\n", side);
+        put_pixel(&engine->img, x, y, get_color(&engine->texture[side], engine->tex_pos.x, engine->tex_pos.y));
+        
+        engine->tex_range += engine->tex_step;
+        
+        y = y + 1;
     }
 
     // draw floor
@@ -125,7 +162,8 @@ void draw_wall(t_engine *engine, int x) {
     }
 }
 
-void start_casting(t_engine *engine) {
+void start_casting(t_engine *engine) 
+{
     int x;
 
     x = 0;
