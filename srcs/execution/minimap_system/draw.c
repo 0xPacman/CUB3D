@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:36:42 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/12 17:50:03 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:11:41 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void draw_map(t_engine *engine) {
     int y;
 
     y = 0;
-    while (y < MAP_HEIGHT) {
+    while (engine->map[y]) {
         x = 0;
-        while (x < MAP_WIDTH) {
-            if (map[y][x] == '1')
+        while (engine->map[y][x]) {
+            if (engine->map[y][x] == '1')
                 draw_square(engine, x * 10, y * 10, 10, 0xB2D6EA);
             else 
                 draw_square(engine, x * 10, y * 10, 10, 0x0078BA);

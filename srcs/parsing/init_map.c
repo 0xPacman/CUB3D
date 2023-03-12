@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/12 17:34:39 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/12 18:28:23 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,12 +136,12 @@ void map_reader(char *line, t_file *file)
     {
         if (file->flag == 1 && !check_for_one(line, file))
         {
-            file->map[file->map_len] = ft_strjoin("", line);
+            file->map[file->map_len] = ft_strdup(line);
             file->map_len++;
         }
         else if (check_for_one(line, file))
         {
-            file->map[file->map_len] = ft_strjoin("", line);
+            file->map[file->map_len] = ft_strdup(line);
             file->map_len++;
         }
     }
