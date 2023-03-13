@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/13 10:36:20 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:33:28 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,10 @@
 # define EAST 1
 # define NORTH 2
 # define SOUTH 3
+
+//text size
+# define CHAR_HEIGHT 16
+# define CHAR_WIDTH 8
 
 // screen size
 # define SCREEN_WIDTH 1280
@@ -107,6 +111,8 @@ typedef struct s_player {
     t_vector    plane;
 	float       move_speed;
 	float       rot_speed;
+    int         health;
+    int         ammo;
 }               t_player;
 
 typedef struct s_ray {
