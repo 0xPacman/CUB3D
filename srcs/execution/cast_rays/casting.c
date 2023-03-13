@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:50:05 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/12 18:40:52 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:22:00 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ void perform_dda(t_engine *engine) {
             engine->ray.side = 1;
         }
         // Check if ray has hit a wall
-        printf("@=>%c\n", engine->map[(int)engine->ray.map.y][(int)engine->ray.map.x]);
         if (engine->map[(int)engine->ray.map.y][(int)engine->ray.map.x] == '1')
             engine->ray.hit = 1;
     }

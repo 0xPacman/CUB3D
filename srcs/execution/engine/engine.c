@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/12 18:39:29 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:20:53 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,40 @@ bool init_engine(t_engine *engine)
     return (false);
 }
 
+char **create_clean_map(char **map)
+{
+    int i;
+    int j;
+    char **clean_map;
+
+    i = 0;
+    while (map[i])
+        i++;
+    clean_map = malloc(sizeof(char *) * (i + 1));
+    if (!clean_map)
+        return (NULL);
+    i = 0;
+    while (map[i])
+    {
+        j = 0;
+        while (map[i][j])
+            j++;
+        clean_map[i] = malloc(sizeof(char) * (j + 1));
+        if (!clean_map[i])
+            return (NULL);
+        j = 0;
+        while (map[i][j])
+        {
+            clean_map[i][j] = map[i][j];
+            j++;
+        }
+        clean_map[i][j] = '\0';
+        i++;
+    }
+    clean_map[i] = NULL;
+    return (clean_map);
+}
+
 void start_engine(t_file *file)
 {
     t_engine *engine;
@@ -74,8 +108,8 @@ void start_engine(t_file *file)
     {
 
         // for testing purposes
-        engine->player.pos.x = 22;
-        engine->player.pos.y = 12;
+        engine->player.pos.x = 3;
+        engine->player.pos.y = 3;
         engine->player.dir.x = cos(PI); //-1
         engine->player.dir.y = sin(PI); // 0
         engine->player.plane.x = 0;
@@ -83,7 +117,7 @@ void start_engine(t_file *file)
         engine->player.move_speed = 0.06;
         engine->player.rot_speed = 0.03;
 
-        engine->map = file->map;
+        engine->map = create_clean_map(file->map);
 
         int i = 0;
         while (engine->map[i])
