@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/13 10:53:06 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/13 13:12:43 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,38 @@ bool init_engine(t_engine *engine)
     return (false);
 }
 
+void    init_player_dir(char dir, t_engine *engine)
+{
+    if (dir == 'N') 
+    {
+        engine->player.dir.x = -1;
+        engine->player.dir.y = 0;
+        engine->player.plane.x = 0;
+        engine->player.plane.y = 0.66;
+    }
+    else if (dir == 'S') 
+    {
+        engine->player.dir.x = 1;
+        engine->player.dir.y = 0;
+        engine->player.plane.x = 0;
+        engine->player.plane.y = -0.66;
+    }
+    else if (dir == 'E') 
+    {
+        engine->player.dir.x = 0;
+        engine->player.dir.y = 1;
+        engine->player.plane.x = 0.66;
+        engine->player.plane.y = 0;
+    }
+    else if (dir == 'W') 
+    {
+        engine->player.dir.x = 0;
+        engine->player.dir.y = -1;
+        engine->player.plane.x = -0.66;
+        engine->player.plane.y = 0;
+    }
+}
+
 void start_engine(t_file *file)
 {
     t_engine *engine;
@@ -72,20 +104,13 @@ void start_engine(t_file *file)
     engine = malloc(sizeof(t_engine));
     if (engine && init_engine(engine))
     {
-
-        // for testing purposes
-        printf("pos: %f, %f\n dir: %c\n", file->p_pos.x, file->p_pos.y, file->p_dir);
-        engine->player.pos.x = 1;
-        engine->player.pos.y = 1;
-        engine->player.dir.x = cos(PI); //-1
-        engine->player.dir.y = sin(PI); // 0
-        engine->player.plane.x = 0;
-        engine->player.plane.y = 0.66;
+        engine->player.pos.x = file->p_pos.x;
+        engine->player.pos.y = file->p_pos.y;
+        init_player_dir(file->p_dir, engine);
         engine->player.move_speed = 0.06;
         engine->player.rot_speed = 0.03;
-
         engine->map = file->map;
-
+        
         int i = 0;
         while (engine->map[i])
         {
