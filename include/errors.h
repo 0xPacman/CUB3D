@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:26:47 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/11 16:53:37 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:03:28 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 # define INVALID_TEXTURE "Error: Invalid texture\n"
 # define INVALID_MAP "Error: Invalid map\n"
 # define INVALID_PLAYER "Error: Invalid player\n"
+# define INVALID_PLAYER_DIR "Error: Invalid player direction\n"
 
 // define the print error function as a macro
 # define ERROR(x) ft_putstr_fd(x, 2)
