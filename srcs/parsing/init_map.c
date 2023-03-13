@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/12 18:28:23 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:36:50 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,7 +221,7 @@ void map_validator(char **map)
 
 
 
-int map_checker(char **map)
+int map_checker(char **map, t_file *file)
 {
     int i = 0;
     int j = 0;
@@ -233,7 +233,13 @@ int map_checker(char **map)
         j = 0;
         while (map[i][j])
         {
-            
+            if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W' )
+            {
+                file->p_dir = map[i][j];
+                file->p_pos.x = j;
+                file->p_pos.y = i;
+            }
+                
             if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W' 
             || map[i][j] == '0' || map[i][j] == '1' || map[i][j] == ' ' || map[i][j] == '\n')
                 valid_char++;
@@ -278,7 +284,7 @@ void recheck_map(char **map)
 int parse_file(int fd, t_file *file)
 {
     parse_texture(fd, file);
-    map_checker(file->map);
+    map_checker(file->map, file);
     map_validator(file->map);
     recheck_map(file->map);
     return (1);

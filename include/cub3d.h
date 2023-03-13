@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/12 18:29:36 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:36:20 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ typedef struct s_file {
     int     line_count;
     int     map_len;
     int     flag;
+    char    p_dir;
+    t_point p_pos;
+    
     
 }               t_file;
 

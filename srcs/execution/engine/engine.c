@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/13 10:26:43 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/13 10:41:02 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void start_engine(t_file *file)
     {
 
         // for testing purposes
+        printf("pos: %f, %f\n dir: %c\n", file->p_pos.x, file->p_pos.y, file->p_dir);
         engine->player.pos.x = 3;
         engine->player.pos.y = 3;
         engine->player.dir.x = cos(PI); //-1
