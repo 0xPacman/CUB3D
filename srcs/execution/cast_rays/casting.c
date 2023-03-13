@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:50:05 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/13 11:01:57 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/13 11:02:56 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,9 +156,7 @@ void draw_wall(t_engine *engine, int x) {
 
     // draw floor
     y = engine->ray.draw_end;
-    if (y < 0) {
-        y = 0;
-    } else {
+    if (!(y < 0)) {
         while (y < SCREEN_HEIGHT) {
             put_pixel(&engine->img, x, y, 0x33bf02);
             y++;
