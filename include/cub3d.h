@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/13 18:39:40 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 11:51:09 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ typedef struct s_texture {
     int     endian;
     int     width;
     int     height;
+    int     *pixels;
 }               t_texture;
 
 typedef struct s_vector {
@@ -102,7 +103,6 @@ typedef struct s_file {
     int     flag;
     char    p_dir;
     t_point p_pos;
-    
     
 }               t_file;
 

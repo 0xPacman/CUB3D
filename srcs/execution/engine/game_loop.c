@@ -6,12 +6,12 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/13 18:09:21 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:26:55 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
-
+#include <time.h>
 void draw_rays(t_engine *engine) {
     (void)engine;
 }
@@ -44,6 +44,46 @@ void draw_text(t_engine *engine, char *text, int x, int y, int color) {
     }
 }
 
+void draw_face_image(t_engine *engine, int x, int y, int width, int height) {
+    // Load the face texture
+    t_texture *face_texture = engine->face;
+
+    // Calculate the aspect ratio of the face texture
+    float texture_aspect_ratio = (float)face_texture->width / (float)face_texture->height;
+
+    // Calculate the aspect ratio of the target square
+    float target_aspect_ratio = (float)width / (float)height;
+
+    // Calculate the scale factor based on the aspect ratios
+    float scale_factor;
+    if (texture_aspect_ratio > target_aspect_ratio) {
+        // If the texture aspect ratio is wider than the target square, scale by the height
+        scale_factor = (float)height / (float)face_texture->height;
+    } else {
+        // Otherwise, scale by the width
+        scale_factor = (float)width / (float)face_texture->width;
+    }
+
+    // Calculate the new dimensions of the face texture based on the scale factor
+    int new_width = face_texture->width * scale_factor;
+    int new_height = face_texture->height * scale_factor;
+
+    // Calculate the position of the top-left corner of the face texture within the square
+    int offset_x = x + (width - new_width) / 2;
+    int offset_y = y + (height - new_height) / 2;
+
+    // Draw the scaled face texture within the square
+    for (int i = 0; i < new_height; i++) {
+        for (int j = 0; j < new_width; j++) {
+            int texture_x = j / scale_factor;
+            int texture_y = i / scale_factor;
+
+            unsigned int color = get_color(face_texture, texture_x, texture_y);
+
+            put_pixel(&engine->img, offset_x + j, offset_y + i, color);
+        }
+    }
+}
 
 void draw_status_bar(t_engine *engine) {
     int bar_width;
@@ -53,7 +93,7 @@ void draw_status_bar(t_engine *engine) {
     engine->player.health = 99;
     // Calculate dimensions and position of status bar
     bar_width = SCREEN_WIDTH;
-    bar_height = SCREEN_HEIGHT / 7;
+    bar_height = 100;
     bar_offset = SCREEN_HEIGHT - bar_height;
 
     // Draw background of status bar
@@ -71,24 +111,25 @@ void draw_status_bar(t_engine *engine) {
     draw_thick_horizontal_line(&engine->img, 0, health_width * engine->player.health / 100, health_offset + health_height / 2, 20, health_color);
 
     // Draw face image
-    int face_width = bar_width / 4;
-    int face_height = bar_height;
-    int face_offset = bar_offset;
-    int face_color = 0x616161;
-    int face_center_x = bar_width / 2 - face_width / 2; // Center the face image
-    for (i = 0; i < face_height; i++) {
-        for (j = 0; j < face_width; j++) {
-            // TODO: Replace this with actual face image
-            put_pixel(&engine->img, j + face_center_x, i + face_offset, face_color); // Draw red square for now
-            //draw face, face located at textures/face/face.xpm
-            // for (int i = 0; i < 24; i++) {
-            //     for (int j = 0; j < 24; j++) {
-            //         put_pixel(&engine->img, j + face_center_x, i + face_offset, get_color(&engine->texture[0], j, i));
-            //     }
-            // }
-        }
-    }
-
+    // static int face_index = 0;
+    // static clock_t last_switch_time = 0;
+    // clock_t current_time = clock();
+    // if (current_time - last_switch_time > CLOCKS_PER_SEC) {
+    //     last_switch_time = current_time;
+    //     face_index = (face_index + 1) % 4;
+    // }
+    // int face_width = bar_height - 20;
+    // int face_height = face_width;
+    // int face_offset_x = bar_width / 2 - face_width / 2;
+    // int face_offset_y = bar_offset + 10;
+    // t_texture *face_texture = engine->face + face_index;
+    // for (i = 0; i < face_height; i++) {
+    //     for (j = 0; j < face_width; j++) {
+    //         int color = get_color(face_texture, j, i);
+    //         put_pixel(&engine->img, face_offset_x + j, face_offset_y + i, color);
+    //     }
+    // }
+    
 }
 
 
@@ -117,6 +158,13 @@ int frame(t_engine *engine) {
     mlx_string_put(engine->mlx, engine->win, 1200, 660, 0xFFD700, "30");
     mlx_string_put(engine->mlx, engine->win, 20, 690, 0x00FF00, "HEALTH");
     mlx_string_put(engine->mlx, engine->win, 1220, 690, 0x00FF00, "AMMO");
+
+
+
+    // loop faces 
+    mlx_put_image_to_window(engine->mlx, engine->win,  engine->face->img, SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT - 100);
+
+    
     return (0);
 }
 
