@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 15:41:24 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:12:20 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define KEY_A 0
 # define KEY_S 1
 # define KEY_D 2
+# define KEY_R 15
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 # define KEY_ESC 53
@@ -139,6 +140,7 @@ typedef struct s_controls {
     int     a;
     int     s;
     int     d;
+    int     r;
     int     left;
     int     right;
     int     esc;

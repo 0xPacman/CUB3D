@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 16:02:52 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:15:45 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,8 @@ void draw_face(t_engine *engine, int x, int y) {
         engine->player.ammo--;
         engine->which_gun_to_draw++;
         mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[4].img, x, y);
+    } else if(engine->controls.r) {
+        engine->player.ammo = 100;
     } else {
         mlx_put_image_to_window(engine->mlx, engine->win,  engine->gun[0].img, SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT - 200);
         if (engine->which_face_to_draw < 30) {
