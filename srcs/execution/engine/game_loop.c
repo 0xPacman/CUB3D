@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 14:13:53 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:14:07 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void draw_status_bar(t_engine *engine) {
     // Draw background of status bar
     for (i = 0; i < bar_height; i++) {
         for (j = 0; j < bar_width; j++) {
-            put_pixel(&engine->img, j, i + bar_offset, 0x333333);
+            put_pixel(&engine->img, j, i + bar_offset, 0x0D4D4D);
         }
     }
 
@@ -96,26 +96,6 @@ void draw_status_bar(t_engine *engine) {
     int health_offset = bar_offset + bar_height / 4;
     int health_color = (engine->player.health > 50) ? 0x00FF00 : 0xFF0000; // Green if health > 50, red otherwise
     draw_thick_horizontal_line(&engine->img, 0, health_width * engine->player.health / 100, health_offset + health_height / 2, 20, health_color);
-
-    // Draw face image
-    // static int face_index = 0;
-    // static clock_t last_switch_time = 0;
-    // clock_t current_time = clock();
-    // if (current_time - last_switch_time > CLOCKS_PER_SEC) {
-    //     last_switch_time = current_time;
-    //     face_index = (face_index + 1) % 4;
-    // }
-    // int face_width = bar_height - 20;
-    // int face_height = face_width;
-    // int face_offset_x = bar_width / 2 - face_width / 2;
-    // int face_offset_y = bar_offset + 10;
-    // t_texture *face_texture = engine->face + face_index;
-    // for (i = 0; i < face_height; i++) {
-    //     for (j = 0; j < face_width; j++) {
-    //         int color = get_color(face_texture, j, i);
-    //         put_pixel(&engine->img, face_offset_x + j, face_offset_y + i, color);
-    //     }
-    // }
     
 }
 
