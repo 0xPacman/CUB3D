@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 14:15:07 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:53:39 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,17 @@ void draw_status_bar(t_engine *engine) {
 
 void draw_face(t_engine *engine, int x, int y) {
     if (engine->controls.left) {
+        mlx_put_image_to_window(engine->mlx, engine->win,  engine->gun[0].img, SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT - 200);
         mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[2].img, x, y);
     } else if (engine->controls.right) {
         mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[3].img, x, y);
+        mlx_put_image_to_window(engine->mlx, engine->win,  engine->gun[0].img, SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT - 200);
     } else if (engine->controls.space) {
+        mlx_put_image_to_window(engine->mlx, engine->win,  engine->gun[engine->which_gun_to_draw % 4].img, SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT - 200);
+        engine->which_gun_to_draw++;
         mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[4].img, x, y);
     } else {
+        mlx_put_image_to_window(engine->mlx, engine->win,  engine->gun[0].img, SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT - 200);
         if (engine->which_face_to_draw < 30) {
             mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[0].img, x, y);
             engine->which_face_to_draw++;
@@ -133,10 +138,10 @@ int frame(t_engine *engine) {
     start_casting(engine);
 
 	/// draw mini map
-    draw_map(engine);
+    // draw_map(engine);
 
     // draw the player 
-    draw_square(engine, engine->player.pos.x * 10, engine->player.pos.y * 10, 10, 0xFF0000);
+    // draw_square(engine, engine->player.pos.x * 10, engine->player.pos.y * 10, 10, 0xFF0000);
 
     // draw status bar
     draw_status_bar(engine);
@@ -148,10 +153,6 @@ int frame(t_engine *engine) {
     mlx_string_put(engine->mlx, engine->win, 1220, 690, 0x00FF00, "AMMO");
 
     draw_face(engine, SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT - 100);
-
-    // mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[1].img, 100, 100);
-
-
     return (0);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 14:29:08 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:33:14 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void start_engine(t_file *file)
         engine->player.rot_speed = 0.03;
         engine->map = file->map;
         engine->which_face_to_draw = 0;
+        engine->which_gun_to_draw = 0;
         
         int i = 0;
         while (engine->map[i])
