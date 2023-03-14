@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 13:47:35 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:23:26 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,6 +293,17 @@ void parse_faces(t_file *file)
     file->face[4] = ft_strdup("textures/face/shot.xpm");
 }
 
+void parse_gun(t_file *file)
+{
+    file->gun = malloc(sizeof(t_texture) * 4);
+    if (!file->gun)
+        ERROR(ALLOCATE_ERROR);
+    file->gun[0] = ft_strdup("textures/gun/gun.xpm");
+    file->gun[1] = ft_strdup("textures/gun/gun1.xpm");
+    file->gun[2] = ft_strdup("textures/gun/gun2.xpm");
+    file->gun[3] = ft_strdup("textures/gun/gun3.xpm");
+}
+
 int parse_file(int fd, t_file *file)
 {
     parse_texture(fd, file);
@@ -300,6 +311,7 @@ int parse_file(int fd, t_file *file)
     map_validator(file->map);
     recheck_map(file->map);
     parse_faces(file);
+    parse_gun(file);
     return (1);
 }
 

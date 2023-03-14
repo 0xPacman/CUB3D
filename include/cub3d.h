@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 14:03:59 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:25:41 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ typedef struct s_file {
     char    *west;
     char    *east;
     char    **face;
+    char    **gun;
     char    **map;
     float   pos_x;
     float   pos_y;
@@ -162,6 +163,7 @@ typedef struct s_engine {
 	t_image     img;
     t_texture   *texture;
     t_texture   *face;
+    t_texture   *gun;
     t_file      *file;
     int         which_face_to_draw;
     t_point     tex_pos;

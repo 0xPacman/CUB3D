@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 13:59:59 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:26:40 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ void load_faces(t_engine *engine, t_file *file)
     load_texture(engine, file->face[4], &engine->face[4]);
 }
 
+void load_guns(t_engine *engine, t_file *file)
+{
+    load_texture(engine, file->gun[0], &engine->gun[0]);
+    load_texture(engine, file->gun[1], &engine->gun[1]);
+    load_texture(engine, file->gun[2], &engine->gun[2]);
+    load_texture(engine, file->gun[3], &engine->gun[3]);
+}
 
 void apply_texture(t_engine *engine, t_file *file)
 {
@@ -40,6 +47,7 @@ void apply_texture(t_engine *engine, t_file *file)
     load_texture(engine, file->north, &engine->texture[NORTH]);
     load_texture(engine, file->south, &engine->texture[SOUTH]);
     load_faces(engine, file);
+    load_guns(engine, file);
 }
 
 void init_texture(t_engine *engine, t_file *file)
