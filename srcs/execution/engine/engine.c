@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 10:39:30 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:59:59 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void load_faces(t_engine *engine, t_file *file)
     load_texture(engine, file->face[1], &engine->face[1]);
     load_texture(engine, file->face[2], &engine->face[2]);
     load_texture(engine, file->face[3], &engine->face[3]);
+    load_texture(engine, file->face[4], &engine->face[4]);
 }
 
 
@@ -46,7 +47,7 @@ void init_texture(t_engine *engine, t_file *file)
     t_texture *texture;
     t_texture *face;
 
-    face = malloc(sizeof(t_texture) * 4);
+    face = malloc(sizeof(t_texture) * 5);
     texture = malloc(sizeof(t_texture) * 4);
     if (!texture || !face)
     {
@@ -120,6 +121,7 @@ void start_engine(t_file *file)
         engine->player.move_speed = 0.06;
         engine->player.rot_speed = 0.03;
         engine->map = file->map;
+        engine->which_face_to_draw = 0;
         
         int i = 0;
         while (engine->map[i])

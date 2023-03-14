@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 13:26:55 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 13:58:51 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,19 +30,6 @@ void draw_thick_horizontal_line(t_image *img, int x1, int x2, int y, int thickne
     }
 }
 
-
-void draw_text(t_engine *engine, char *text, int x, int y, int color) {
-    int i, j, offset;
-
-    for (i = 0; i < CHAR_HEIGHT; i++) {
-        for (j = 0; j < CHAR_WIDTH; j++) {
-            offset = (y + i) * engine->img.line_length + (x + j) * (engine->img.bits_per_pixel / 8);
-            if (text[i * CHAR_WIDTH + j] == 'X') {
-                put_pixel(&engine->img, x + j, y + i, color);
-            }
-        }
-    }
-}
 
 void draw_face_image(t_engine *engine, int x, int y, int width, int height) {
     // Load the face texture
@@ -133,6 +120,24 @@ void draw_status_bar(t_engine *engine) {
 }
 
 
+void draw_face(t_engine *engine, int x, int y) {
+    if (engine->controls.left) {
+        mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[2].img, x, y);
+    } else if (engine->controls.right) {
+        mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[3].img, x, y);
+    } else {
+        if (engine->which_face_to_draw < 30) {
+            mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[0].img, x, y);
+            engine->which_face_to_draw++;
+        } else if (engine->which_face_to_draw < 60) {
+            mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[1].img, x, y);
+            engine->which_face_to_draw++;
+        } else {
+            engine->which_face_to_draw = 0;
+        }
+    }
+}
+
 
 int frame(t_engine *engine) {
     // clear the window
@@ -159,12 +164,8 @@ int frame(t_engine *engine) {
     mlx_string_put(engine->mlx, engine->win, 20, 690, 0x00FF00, "HEALTH");
     mlx_string_put(engine->mlx, engine->win, 1220, 690, 0x00FF00, "AMMO");
 
+    draw_face(engine, SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT - 100);
 
-
-    // loop faces 
-    mlx_put_image_to_window(engine->mlx, engine->win,  engine->face->img, SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT - 100);
-
-    
     return (0);
 }
 
