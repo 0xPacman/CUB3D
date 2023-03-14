@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 14:33:04 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:41:24 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,6 +171,8 @@ typedef struct s_engine {
     float       tex_step;
     float       tex_range;
     char        **map;
+    t_rgb       floor;
+    t_rgb       ceiling;
 }               t_engine;
 
 // execution functions

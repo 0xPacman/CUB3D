@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:50:05 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/13 11:02:56 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 15:44:06 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,6 +126,10 @@ unsigned int    get_color(t_texture *t, int x, int y)
     return (((((unsigned char)ptr[2]) << 16) + (((unsigned char)ptr[1]) << 8) + ((unsigned char)ptr[0])));
 }
 
+unsigned int    create_color(int r, int g, int b)
+{
+    return ((r << 16) + (g << 8) + b);
+}
 
 void draw_wall(t_engine *engine, int x) {
     int y;
@@ -137,7 +141,7 @@ void draw_wall(t_engine *engine, int x) {
     // draw ceiling
     y = 0;
     while (y < engine->ray.draw_start) {
-        put_pixel(&engine->img, x, y, 0x03adcb);
+        put_pixel(&engine->img, x, y, create_color(engine->ceiling.r, engine->ceiling.g, engine->ceiling.b));
         y++;
     }
     
@@ -158,7 +162,7 @@ void draw_wall(t_engine *engine, int x) {
     y = engine->ray.draw_end;
     if (!(y < 0)) {
         while (y < SCREEN_HEIGHT) {
-            put_pixel(&engine->img, x, y, 0x33bf02);
+            put_pixel(&engine->img, x, y, create_color(engine->floor.r, engine->floor.g, engine->floor.b));
             y++;
         }
     }
