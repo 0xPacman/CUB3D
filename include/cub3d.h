@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/13 12:33:28 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:39:40 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_file {
     char    *south;
     char    *west;
     char    *east;
+    char    **face;
     char    **map;
     float   pos_x;
     float   pos_y;
@@ -158,6 +159,7 @@ typedef struct s_engine {
     t_controls  controls;
 	t_image     img;
     t_texture   *texture;
+    t_texture   *face;
     t_file      *file;
     t_point     tex_pos;
     float       tex_step;
@@ -183,7 +185,7 @@ void    draw_square(t_engine *engine, int x, int y, int size, int color);
 void    draw_map(t_engine *engine);
 void    start_casting(t_engine *engine);
 
-
+unsigned int    get_color(t_texture *t, int x, int y);
 // parsing functions
 t_file *init_map(int fd);
 

@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/13 10:36:50 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:38:50 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,7 +208,7 @@ void map_validator(char **map)
             {
                 if (!is0or1(map[i][j - 1]) && !is0or1(map[i][j + 1]) && !is0or1(map[i - 1][j]) && !is0or1(map[i + 1][j]))
                 {
-                    printf("map error at %d,%d\n", i, j);
+                    //printf("map error at %d,%d\n", i, j);
                     ERROR(INVALID_MAP);
                     exit(1);
                 }
@@ -281,12 +281,24 @@ void recheck_map(char **map)
     }
 }
 
+void parse_faces(t_file *file)
+{
+    file->face = malloc(sizeof(t_texture) * 4);
+    if (!file->face)
+        ERROR(ALLOCATE_ERROR);
+    file->face[0] = ft_strdup("textures/face/face.xpm");
+    file->face[1] = ft_strdup("textures/face/face1.xpm");
+    file->face[2] = ft_strdup("textures/face/face2.xpm");
+    file->face[3] = ft_strdup("textures/face/face3.xpm");
+}
+
 int parse_file(int fd, t_file *file)
 {
     parse_texture(fd, file);
     map_checker(file->map, file);
     map_validator(file->map);
     recheck_map(file->map);
+    parse_faces(file);
     return (1);
 }
 

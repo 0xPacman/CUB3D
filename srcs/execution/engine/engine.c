@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/13 16:38:37 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:39:30 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,28 +23,38 @@ void load_texture(t_engine *engine, char *path, t_texture *texture)
     texture->data = mlx_get_data_addr(texture->img, &texture->bits_per_pixel, &texture->line_len, &texture->endian);
 }
 
-// to do : apply_texture function
+void load_faces(t_engine *engine, t_file *file)
+{
+    load_texture(engine, file->face[0], &engine->face[0]);
+    load_texture(engine, file->face[1], &engine->face[1]);
+    load_texture(engine, file->face[2], &engine->face[2]);
+    load_texture(engine, file->face[3], &engine->face[3]);
+}
+
+
 void apply_texture(t_engine *engine, t_file *file)
 {
-    // to debug
-    //  printf("\n|%s|\n|%s|\n|%s|\n|%s|\n", file->north, file->south, file->east, file->west);
     load_texture(engine, file->west, &engine->texture[WEST]);
     load_texture(engine, file->east, &engine->texture[EAST]);
     load_texture(engine, file->north, &engine->texture[NORTH]);
     load_texture(engine, file->south, &engine->texture[SOUTH]);
+    load_faces(engine, file);
 }
 
 void init_texture(t_engine *engine, t_file *file)
 {
     t_texture *texture;
+    t_texture *face;
 
+    face = malloc(sizeof(t_texture) * 4);
     texture = malloc(sizeof(t_texture) * 4);
-    if (!texture)
+    if (!texture || !face)
     {
         ERROR(INIT_TEXTURE);
         exit(EXIT_FAILURE);
     }
     engine->texture = texture;
+    engine->face = face;
     apply_texture(engine, file);
     // printf("%s\n",file->north);
 }
@@ -115,7 +125,7 @@ void start_engine(t_file *file)
         while (engine->map[i])
         {
             engine->map[i][ft_strlen(engine->map[i]) - 1] = '\0';
-            printf("%s\n", engine->map[i]);
+            //printf("%s\n", engine->map[i]);
             i++;
         }
 
