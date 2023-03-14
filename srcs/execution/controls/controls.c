@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:06:22 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 16:12:03 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 20:19:44 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,20 @@ int	key_release(int keycode, t_engine *engine) {
 	return (0);
 }
 
+int mouse_release(int keycode, int x, int y, t_engine *engine) {
+    (void)x;
+    (void)y;
+    if (keycode == 1)
+        engine->controls.space = false; 
+    else if (keycode == 2)
+    {
+        engine->controls.right = false;
+        engine->controls.left = false;
+
+    } 
+    return (0);
+}
+
 void init_keys(t_engine *engine) {
 	engine->controls.w = false;
 	engine->controls.s = false;
@@ -70,9 +84,34 @@ void init_keys(t_engine *engine) {
 	engine->controls.right = false;
 }
 
+int mouse_press(int button, int x, int y, t_engine *engine) {
+    int dx = x - SCREEN_WIDTH / 2;
+    (void)y;
+    // Update the engine controls
+    if (button == 1)
+    {
+        engine->controls.space = true;
+    }
+    else if (button == 2)
+    {
+        if (dx > 0) {
+            engine->controls.right = true;
+            engine->controls.left = false;
+        } else {
+            engine->controls.right = false;
+            engine->controls.left = true;
+        }
+    }  
+    return (0);
+}
+
 void init_controls(t_engine *engine) {
 	init_keys(engine);
     mlx_hook(engine->win, 2, 1L<<0, key_press, engine);
     mlx_hook(engine->win, 3, 1L<<1, key_release, engine);
     mlx_hook(engine->win, 17, 0, close_game, engine);
+    // mouse controls
+    mlx_hook(engine->win, 4, 1L<<2, mouse_press, engine);
+    mlx_hook(engine->win, 5, 1L<<3, mouse_release, engine);
+    
 }

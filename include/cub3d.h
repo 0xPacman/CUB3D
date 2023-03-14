@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 17:34:47 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 20:18:21 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ typedef struct s_controls {
     int     right;
     int     esc;
     int     space;
+    
 }               t_controls;
 
 typedef struct s_image {
