@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 20:18:21 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:51:04 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ typedef struct s_file {
     char    **gun;
     char    **map;
     char    **gps;
+    char    **door;
     float   pos_x;
     float   pos_y;
     int     line_count;
@@ -169,6 +170,7 @@ typedef struct s_engine {
     t_texture   *face;
     t_texture   *gun;
     t_texture   *gps;
+    t_texture   *door;
     t_file      *file;
     int         which_face_to_draw;
     int         which_gun_to_draw;
@@ -179,7 +181,15 @@ typedef struct s_engine {
     t_rgb       floor;
     t_rgb       ceiling;
 }               t_engine;
-
+typedef struct s_door
+{
+    int top_left_x;
+    int top_left_y;
+    int bottom_right_x;
+    int bottom_right_y;
+    int is_open;
+    t_image texture;
+} t_door;
 // execution functions
 void    start_engine(t_file *file);
 void    init_controls(t_engine *engine);

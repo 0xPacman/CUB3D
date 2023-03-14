@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 17:38:31 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:52:08 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ void load_gps(t_engine *engine, t_file *file)
     load_texture(engine, file->gps[0], &engine->gps[0]);
 }
 
+void load_door(t_engine *engine, t_file *file)
+{
+    load_texture(engine, file->door[0], &engine->door[0]);
+}
+
 void apply_texture(t_engine *engine, t_file *file)
 {
     load_texture(engine, file->west, &engine->texture[WEST]);
@@ -54,6 +59,7 @@ void apply_texture(t_engine *engine, t_file *file)
     load_faces(engine, file);
     load_guns(engine, file);
     load_gps(engine, file);
+    load_door(engine, file);
 }
 
 void init_texture(t_engine *engine, t_file *file)
@@ -62,11 +68,13 @@ void init_texture(t_engine *engine, t_file *file)
     t_texture *face;
     t_texture *gun;
     t_texture *gps;
+    t_texture *door;
+    door = malloc(sizeof(t_texture) * 1);
     face = malloc(sizeof(t_texture) * 5);
     texture = malloc(sizeof(t_texture) * 4);
     gun = malloc(sizeof(t_texture) * 4);
     gps = malloc(sizeof(t_texture) * 1);
-    if (!texture || !face || !gun)
+    if (!texture || !face || !gun || !gps || !door)
     {
         ERROR(INIT_TEXTURE);
         exit(EXIT_FAILURE);
@@ -75,8 +83,8 @@ void init_texture(t_engine *engine, t_file *file)
     engine->face = face;
     engine->gun = gun;
     engine->gps = gps;
+    engine->door = door;
     apply_texture(engine, file);
-    // printf("%s\n",file->north);
 }
 
 bool init_engine(t_engine *engine)

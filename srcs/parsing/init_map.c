@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 17:40:21 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 21:50:23 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -241,7 +241,8 @@ int map_checker(char **map, t_file *file)
             }
                 
             if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E' || map[i][j] == 'W' 
-            || map[i][j] == '0' || map[i][j] == '1' || map[i][j] == ' ' || map[i][j] == '\n')
+            || map[i][j] == '0' || map[i][j] == '1' || map[i][j] == ' ' || map[i][j] == '\n'
+            || map[i][j] == 'D')
                 valid_char++;
             else
                 unvalid_char++;
@@ -313,6 +314,14 @@ void parse_gps(t_file *file)
 
 }
 
+void parse_door(t_file *file)
+{
+    file->door = malloc(sizeof(t_texture) * 1);
+    if (!file->door)
+        ERROR(ALLOCATE_ERROR);
+    file->door[0] = ft_strdup("textures/door.xpm");
+}
+
 int parse_file(int fd, t_file *file)
 {
     parse_texture(fd, file);
@@ -322,6 +331,7 @@ int parse_file(int fd, t_file *file)
     parse_faces(file);
     parse_gun(file);
     parse_gps(file);
+    parse_door(file);
     return (1);
 }
 
