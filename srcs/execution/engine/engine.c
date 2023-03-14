@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 15:41:53 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:01:11 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,8 @@ void start_engine(t_file *file)
         engine->which_gun_to_draw = 0;
         engine->floor = file->floor;
         engine->ceiling = file->ceiling;
-        
+        engine->player.health = 100;
+        engine->player.ammo = 100;
         int i = 0;
         while (engine->map[i])
         {
