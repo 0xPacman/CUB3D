@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 16:12:20 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:34:47 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ typedef struct s_file {
     char    **face;
     char    **gun;
     char    **map;
+    char    **gps;
     float   pos_x;
     float   pos_y;
     int     line_count;
@@ -166,6 +167,7 @@ typedef struct s_engine {
     t_texture   *texture;
     t_texture   *face;
     t_texture   *gun;
+    t_texture   *gps;
     t_file      *file;
     int         which_face_to_draw;
     int         which_gun_to_draw;
@@ -192,7 +194,7 @@ void    rotate_right(t_engine *engine);
 void   check_controls(t_engine *engine);
 // minimap system functions
 void    draw_square(t_engine *engine, int x, int y, int size, int color);
-void    draw_map(t_engine *engine);
+void    draw_map(t_engine *engine, int size);
 void    start_casting(t_engine *engine);
 
 unsigned int    get_color(t_texture *t, int x, int y);

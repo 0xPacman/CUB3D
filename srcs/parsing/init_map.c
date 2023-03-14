@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 14:23:26 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:40:21 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,15 @@ void parse_gun(t_file *file)
     file->gun[3] = ft_strdup("textures/gun/gun3.xpm");
 }
 
+void parse_gps(t_file *file)
+{
+    file->gps = malloc(sizeof(t_texture) * 1);
+    if (!file->gps)
+        ERROR(ALLOCATE_ERROR);
+    file->gps[0] = ft_strdup("textures/gps.xpm");
+
+}
+
 int parse_file(int fd, t_file *file)
 {
     parse_texture(fd, file);
@@ -312,6 +321,7 @@ int parse_file(int fd, t_file *file)
     recheck_map(file->map);
     parse_faces(file);
     parse_gun(file);
+    parse_gps(file);
     return (1);
 }
 

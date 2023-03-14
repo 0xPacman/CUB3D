@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 16:15:45 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:51:40 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,10 +141,9 @@ int frame(t_engine *engine) {
     start_casting(engine);
 
 	// draw mini map
-    draw_map(engine);
+    draw_map(engine, 7);
 
-    // draw the player 
-    draw_square(engine, engine->player.pos.x * 5, engine->player.pos.y * 5, 5, 0xFF0000);
+    
 
     // draw status bar
     draw_status_bar(engine);
@@ -154,7 +153,8 @@ int frame(t_engine *engine) {
     mlx_string_put(engine->mlx, engine->win, 1200, 660, 0xFFD700, ft_itoa(engine->player.ammo));
     mlx_string_put(engine->mlx, engine->win, 20, 690, 0x00FF00, "HEALTH");
     mlx_string_put(engine->mlx, engine->win, 1220, 690, 0x00FF00, "AMMO");
-
+    
+    mlx_put_image_to_window(engine->mlx, engine->win, engine->gps[0].img, 4, 5);
     draw_face(engine, SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT - 100);
     return (0);
 }

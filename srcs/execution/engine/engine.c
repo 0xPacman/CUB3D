@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 16:01:11 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:38:31 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,11 @@ void load_guns(t_engine *engine, t_file *file)
     load_texture(engine, file->gun[3], &engine->gun[3]);
 }
 
+void load_gps(t_engine *engine, t_file *file)
+{
+    load_texture(engine, file->gps[0], &engine->gps[0]);
+}
+
 void apply_texture(t_engine *engine, t_file *file)
 {
     load_texture(engine, file->west, &engine->texture[WEST]);
@@ -48,6 +53,7 @@ void apply_texture(t_engine *engine, t_file *file)
     load_texture(engine, file->south, &engine->texture[SOUTH]);
     load_faces(engine, file);
     load_guns(engine, file);
+    load_gps(engine, file);
 }
 
 void init_texture(t_engine *engine, t_file *file)
@@ -55,9 +61,11 @@ void init_texture(t_engine *engine, t_file *file)
     t_texture *texture;
     t_texture *face;
     t_texture *gun;
+    t_texture *gps;
     face = malloc(sizeof(t_texture) * 5);
     texture = malloc(sizeof(t_texture) * 4);
     gun = malloc(sizeof(t_texture) * 4);
+    gps = malloc(sizeof(t_texture) * 1);
     if (!texture || !face || !gun)
     {
         ERROR(INIT_TEXTURE);
@@ -66,6 +74,7 @@ void init_texture(t_engine *engine, t_file *file)
     engine->texture = texture;
     engine->face = face;
     engine->gun = gun;
+    engine->gps = gps;
     apply_texture(engine, file);
     // printf("%s\n",file->north);
 }
