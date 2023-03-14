@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 13:52:55 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:03:59 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 # define KEY_ESC 53
+# define KEY_SPACE 49
 
 //sides
 # define WEST 0
@@ -140,6 +141,7 @@ typedef struct s_controls {
     int     left;
     int     right;
     int     esc;
+    int     space;
 }               t_controls;
 
 typedef struct s_image {

@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 13:58:51 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:13:53 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,8 @@ void draw_face(t_engine *engine, int x, int y) {
         mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[2].img, x, y);
     } else if (engine->controls.right) {
         mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[3].img, x, y);
+    } else if (engine->controls.space) {
+        mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[4].img, x, y);
     } else {
         if (engine->which_face_to_draw < 30) {
             mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[0].img, x, y);
@@ -165,6 +167,9 @@ int frame(t_engine *engine) {
     mlx_string_put(engine->mlx, engine->win, 1220, 690, 0x00FF00, "AMMO");
 
     draw_face(engine, SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT - 100);
+
+    mlx_put_image_to_window(engine->mlx, engine->win,  engine->face[1].img, 100, 100);
+
 
     return (0);
 }
