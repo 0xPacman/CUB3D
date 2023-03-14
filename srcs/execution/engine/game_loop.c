@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 13:58:51 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:02:55 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void draw_status_bar(t_engine *engine) {
     // Draw background of status bar
     for (i = 0; i < bar_height; i++) {
         for (j = 0; j < bar_width; j++) {
-            put_pixel(&engine->img, j, i + bar_offset, 0x333333);
+            put_pixel(&engine->img, j, i + bar_offset, 0x0D4D4D);
         }
     }
 
