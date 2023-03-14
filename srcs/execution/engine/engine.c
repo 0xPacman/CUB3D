@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 14:26:40 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/14 14:29:08 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,18 @@ void init_texture(t_engine *engine, t_file *file)
 {
     t_texture *texture;
     t_texture *face;
-
+    t_texture *gun;
     face = malloc(sizeof(t_texture) * 5);
     texture = malloc(sizeof(t_texture) * 4);
-    if (!texture || !face)
+    gun = malloc(sizeof(t_texture) * 4);
+    if (!texture || !face || !gun)
     {
         ERROR(INIT_TEXTURE);
         exit(EXIT_FAILURE);
     }
     engine->texture = texture;
     engine->face = face;
+    engine->gun = gun;
     apply_texture(engine, file);
     // printf("%s\n",file->north);
 }
