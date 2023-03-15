@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/14 21:50:23 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:57:18 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -263,24 +263,89 @@ int map_checker(char **map, t_file *file)
     return (1);
 }
 
+int check_1_line(char *line)
+{
+
+    // if the first line contains a only 1's and whitespaces return 1
+    int i = 0;
+    while (line[i])
+    {
+        if (line[i] == '1')
+            i++;
+        else if (ft_isspace(line[i]))
+            i++;
+        else
+            return (0);
+    }
+    return (1);
+    
+}
+
+int check_mid_lines(char *line)
+{
+    // check if the line contains 1 at the beginning and at the end and ignore whitespaces
+    int i = 0;
+    int j = ft_strlen(line) - 1;
+    while (ft_isspace(line[i]))
+        i++;
+    while (ft_isspace(line[j]))
+        j--;
+    if (line[i] == '1' && line[j] == '1')
+        return (1);
+    return (0);
+
+}
+
 void recheck_map(char **map)
 {
-    int i = 0;
-    int j = 0;
+    size_t i = 0;
+    size_t j = 0;
     
     while (map[i])
     {
-        //printf("line %d: %s", i, map[i]);
         j = 0;
         while (map[i][j])
         {
-            if (map[i][j] == '1')
-                break;
+            if (i == 0)
+            {
+                if (!check_1_line(map[i]))
+                {
+                    ERROR(INVALID_MAP);
+                    exit(1);
+                }
+            }
+            else if (i == ft_strlen(map[i]))
+            {
+                if (!check_1_line(map[i]))
+                {
+                    ERROR(INVALID_MAP);
+                    exit(1);
+                }
+            }
+            else if (j == 0)
+            {
+                if (!check_mid_lines(map[i]))
+                {
+                    ERROR(INVALID_MAP);
+                    exit(1);
+                }
+            }
+            else if (j == ft_strlen(map[i]))
+            {
+                if (!check_mid_lines(map[i]))
+                {
+                    ERROR(INVALID_MAP);
+                    exit(1);
+                }
+            }
             j++;
         }
         i++;
     }
+    
 }
+
+
 
 void parse_faces(t_file *file)
 {
