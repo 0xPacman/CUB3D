@@ -24,6 +24,7 @@ SRCS	=	cub3d.c \
 			./srcs/execution/engine/utils/put_pixel/put_pixel.c \
 			./srcs/execution/minimap_system/draw.c \
 			./srcs/execution/controls/utils/check_controls.c \
+			./srcs/execution/controls/utils/init_control.c \
 			./srcs/execution/cast_rays/casting.c \
 			./srcs/parsing/init_map.c \
 			./srcs/parsing/get_next_line/get_next_line.c \
