@@ -37,7 +37,8 @@ SRCS	=	cub3d.c \
 			./srcs/parsing/rgb.c \
 			./srcs/parsing/free_func.c \
 			./srcs/parsing/texture_init.c \
-			./srcs/execution/controls/doors/change_status_door.c
+			./srcs/execution/controls/doors/change_status_door.c \
+			./srcs/execution/cast_rays/calc.c \
 
 OBJS	=	$(SRCS:.c=.o)
 

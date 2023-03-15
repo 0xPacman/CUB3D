@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 16:59:49 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:33:05 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,6 +229,8 @@ int             check_side(t_engine *engine);
 void	        calc_tex_x(t_engine *engine, t_texture *texture);
 unsigned int	create_color(int r, int g, int b);
 unsigned int	get_color(t_texture *t, int x, int y);
+void	        calculate_wall_dist(t_engine *engine);
+void        	calculate_line_height(t_engine *engine);
 
 // parse functions
 int parse_file(int fd, t_file *file);
