@@ -1,26 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
+/*   free_func.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/07 10:08:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 14:50:56 by ahjadani         ###   ########.fr       */
+/*   Created: 2023/03/15 16:22:46 by ahjadani          #+#    #+#             */
+/*   Updated: 2023/03/15 16:31:52 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../include/cub3d.h"
 
-void	ft_putstr_fd(char *s, int fd)
+void	ft_split_free(char **split)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	if (!s)
-		return ;
-	while (s[i])
-		write(fd, &s[i++], 1);
-	if (fd == 2)
-		exit(1);
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }

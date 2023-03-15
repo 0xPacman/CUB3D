@@ -31,7 +31,13 @@ SRCS	=	cub3d.c \
 			./srcs/execution/controls/doors/change_status_door.c \
 			./srcs/execution/draw_screen/draw.c \
 			./srcs/execution/draw_screen/utils.c \
-
+			./srcs/parsing/parse_files.c \
+			./srcs/parsing/check_func.c \
+			./srcs/parsing/check_valid.c \
+			./srcs/parsing/rgb.c \
+			./srcs/parsing/free_func.c \
+			./srcs/parsing/texture_init.c \
+			./srcs/execution/controls/doors/change_status_door.c
 
 OBJS	=	$(SRCS:.c=.o)
 
