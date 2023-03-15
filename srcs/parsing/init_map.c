@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 13:11:46 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:15:49 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -387,12 +387,20 @@ void parse_door(t_file *file)
     file->door[0] = ft_strdup("textures/door.xpm");
 }
 
-void parse_uwu(t_file *file)
+void parse_open_door(t_file *file)
 {
     file->open_door = malloc(sizeof(t_texture) * 1);
     if (!file->open_door)
         ERROR(ALLOCATE_ERROR);
     file->open_door[0] = ft_strdup("textures/open_door.xpm");
+}
+
+void parse_close_door(t_file *file)
+{
+    file->close_door = malloc(sizeof(t_texture) * 1);
+    if (!file->close_door)
+        ERROR(ALLOCATE_ERROR);
+    file->close_door[0] = ft_strdup("textures/close_door.xpm");
 }
 
 int parse_file(int fd, t_file *file)
@@ -405,7 +413,8 @@ int parse_file(int fd, t_file *file)
     parse_gun(file);
     parse_gps(file);
     parse_door(file);
-    parse_uwu(file);
+    parse_open_door(file);
+    parse_close_door(file);
     return (1);
 }
 
