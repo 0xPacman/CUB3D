@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 14:16:13 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:20:13 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,6 @@ typedef struct s_file {
     char    **gps;
     char    **door;
     char    **open_door;
-    char    **close_door;
     float   pos_x;
     float   pos_y;
     int     line_count;
@@ -176,7 +175,6 @@ typedef struct s_engine {
     t_texture   *gps;
     t_texture   *door;
     t_texture   *open_door;
-    t_texture   *close_door;
     t_file      *file;
     int         which_face_to_draw;
     int         which_gun_to_draw;
@@ -188,6 +186,7 @@ typedef struct s_engine {
     t_rgb       ceiling;
     int         is_door;
     int         can_open_door;
+    int         can_close_door;
     t_point     door_pos;
 }               t_engine;
 typedef struct s_door
