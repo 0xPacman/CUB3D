@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 11:55:29 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:15:52 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ void load_gps(t_engine *engine, t_file *file)
 void load_door(t_engine *engine, t_file *file)
 {
     load_texture(engine, file->door[0], &engine->door[0]);
+    load_texture(engine, file->open_door[0], &engine->open_door[0]);
 }
 
 void apply_texture(t_engine *engine, t_file *file)
@@ -60,6 +61,7 @@ void apply_texture(t_engine *engine, t_file *file)
     load_guns(engine, file);
     load_gps(engine, file);
     load_door(engine, file);
+    
 }
 
 void init_texture(t_engine *engine, t_file *file)
@@ -69,11 +71,13 @@ void init_texture(t_engine *engine, t_file *file)
     t_texture *gun;
     t_texture *gps;
     t_texture *door;
+    t_texture *open_door;
     door = malloc(sizeof(t_texture) * 1);
     face = malloc(sizeof(t_texture) * 5);
     texture = malloc(sizeof(t_texture) * 4);
     gun = malloc(sizeof(t_texture) * 4);
     gps = malloc(sizeof(t_texture) * 1);
+    open_door = malloc(sizeof(t_texture) * 1);
     if (!texture || !face || !gun || !gps || !door)
     {
         ERROR(INIT_TEXTURE);
@@ -84,6 +88,7 @@ void init_texture(t_engine *engine, t_file *file)
     engine->gun = gun;
     engine->gps = gps;
     engine->door = door;
+    engine->open_door = open_door;
     apply_texture(engine, file);
 }
 
