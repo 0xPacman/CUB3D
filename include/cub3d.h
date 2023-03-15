@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 16:59:49 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/15 17:34:19 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 # include <unistd.h>
 
 // boolean
-# define bool int
-# define true 1
-# define false 0
+# define bool   int
+# define true   1
+# define false  0
 
 // Pi
 # define PI 3.14159265359
@@ -58,100 +58,99 @@
 # define SCREEN_HEIGHT 720
 
 // map for testing
-extern char map[24][24];
-#define MAP_WIDTH 24
-#define MAP_HEIGHT 24
+# define MAP_WIDTH 24
+# define MAP_HEIGHT 24
 
 // texture struct
 typedef struct s_texture {
-    void    *img;
-    char    *data;
-    int     bits_per_pixel;
-    int     line_len;
-    int     endian;
-    int     width;
-    int     height;
-    int     *pixels;
-}               t_texture;
+	void	*img;
+	char	*data;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		height;
+	int		*pixels;
+}	t_texture;
 
 typedef struct s_vector {
-    float   x;
-    float   y;
-}               t_vector;
+	float	x;
+	float	y;
+}	t_vector;
 
 typedef struct s_point {
-    float x;
-    float y;
-}               t_point;
+	float	x;
+	float	y;
+}	t_point;
 
 typedef struct rgb {
-    int r;
-    int g;
-    int b;
+	int r;
+	int g;
+	int b;
 }               t_rgb;
 
 typedef struct s_file {
-    t_rgb    floor;
-    t_rgb    ceiling;
-    char    *north;
-    char    *south;
-    char    *west;
-    char    *east;
-    char    **face;
-    char    **gun;
-    char    **map;
-    char    **gps;
-    char    **door;
-    char    **open_door;
-    char    **close_door;
-    float   pos_x;
-    float   pos_y;
-    int     line_count;
-    int     map_len;
-    int     flag;
-    char    p_dir;
-    t_point p_pos;
-    
+	t_rgb    floor;
+	t_rgb    ceiling;
+	char    *north;
+	char    *south;
+	char    *west;
+	char    *east;
+	char    **face;
+	char    **gun;
+	char    **map;
+	char    **gps;
+	char    **door;
+	char    **open_door;
+	char    **close_door;
+	float   pos_x;
+	float   pos_y;
+	int     line_count;
+	int     map_len;
+	int     flag;
+	char    p_dir;
+	t_point p_pos;
+	
 }               t_file;
 
 typedef struct s_player {
-    t_point     pos;
-    t_vector    dir;
-    t_vector    plane;
+	t_point     pos;
+	t_vector    dir;
+	t_vector    plane;
 	float       move_speed;
 	float       rot_speed;
-    int         health;
-    int         ammo;
+	int         health;
+	int         ammo;
 }               t_player;
 
 typedef struct s_ray {
-    float   camera_x;
-    t_point dir;
-    t_point map;
-    t_point side_dist;
-    t_point delta_dist;
-    float   perp_wall_dist;
-    t_point step;
-    int     hit;
-    int     side;
-    int     line_height;
-    int     draw_start;
-    int     draw_end;
-    int     color;
+	float   camera_x;
+	t_point dir;
+	t_point map;
+	t_point side_dist;
+	t_point delta_dist;
+	float   perp_wall_dist;
+	t_point step;
+	int     hit;
+	int     side;
+	int     line_height;
+	int     draw_start;
+	int     draw_end;
+	int     color;
 }               t_ray;
 
 typedef struct s_controls {
-    int     w;
-    int     a;
-    int     s;
-    int     d;
-    int     r;
-    int     left;
-    int     right;
-    int     esc;
-    int     space;
-    int     f;
-    
+	int     w;
+	int     a;
+	int     s;
+	int     d;
+	int     r;
+	int     left;
+	int     right;
+	int     esc;
+	int     space;
+	int     f;
+	
 }               t_controls;
 
 typedef struct s_image {
@@ -164,41 +163,41 @@ typedef struct s_image {
 
 
 typedef struct s_engine {
-    void        *mlx;
-    void        *win;
-    t_player    player;
-    t_ray       ray;
-    t_controls  controls;
+	void        *mlx;
+	void        *win;
+	t_player    player;
+	t_ray       ray;
+	t_controls  controls;
 	t_image     img;
-    t_texture   *texture;
-    t_texture   *face;
-    t_texture   *gun;
-    t_texture   *gps;
-    t_texture   *door;
-    t_texture   *open_door;
-    t_texture   *close_door;
-    t_file      *file;
-    int         which_face_to_draw;
-    int         which_gun_to_draw;
-    t_point     tex_pos;
-    float       tex_step;
-    float       tex_range;
-    char        **map;
-    t_rgb       floor;
-    t_rgb       ceiling;
-    int         is_door;
-    int         can_open_door;
-    int         can_close_door;
-    t_point     door_pos;
+	t_texture   *texture;
+	t_texture   *face;
+	t_texture   *gun;
+	t_texture   *gps;
+	t_texture   *door;
+	t_texture   *open_door;
+	t_texture   *close_door;
+	t_file      *file;
+	int         which_face_to_draw;
+	int         which_gun_to_draw;
+	t_point     tex_pos;
+	float       tex_step;
+	float       tex_range;
+	char        **map;
+	t_rgb       floor;
+	t_rgb       ceiling;
+	int         is_door;
+	int         can_open_door;
+	int         can_close_door;
+	t_point     door_pos;
 }               t_engine;
 typedef struct s_door
 {
-    int top_left_x;
-    int top_left_y;
-    int bottom_right_x;
-    int bottom_right_y;
-    int is_open;
-    t_image texture;
+	int top_left_x;
+	int top_left_y;
+	int bottom_right_x;
+	int bottom_right_y;
+	int is_open;
+	t_image texture;
 } t_door;
 
 // execution functions
