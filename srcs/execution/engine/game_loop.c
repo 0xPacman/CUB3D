@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_loop.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 14:21:31 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:46:44 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,31 @@ void draw_face(t_engine *engine, int x, int y) {
     }
 }
 
+int map_len_y(char **map)
+{
+    int i;
+
+    i = 0;
+    while(map[i])
+        i++;
+    return (i);
+}
+
+int map_len_x(char **map)
+{
+    int i;
+    int j;
+
+    i = 0;
+    while(map[i])
+    {
+        j = 0;
+        while(map[i][j])
+            j++;
+        i++;
+    }
+    return (j);
+}
 
 int frame(t_engine *engine) {
     // clear the window
@@ -141,7 +166,11 @@ int frame(t_engine *engine) {
     start_casting(engine);
 
 	// draw mini map
-    draw_map(engine, 7);
+    if (map_len_x(engine->map) > 5 && map_len_y(engine->map) > 5)
+        draw_map(engine, 7);
+    
+    
+    //draw_map(engine, 7);
 
     
 

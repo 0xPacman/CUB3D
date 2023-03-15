@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 14:23:25 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:27:44 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,5 +223,41 @@ unsigned int    get_color(t_texture *t, int x, int y);
 // parsing functions
 t_file *init_map(int fd);
 int				press_key_f(t_engine *engine);
+
+// parse functions
+int parse_file(int fd, t_file *file);
+void parse_door(t_file *file);
+void parse_gps(t_file *file);
+void parse_gun(t_file *file);
+void parse_faces(t_file *file);
+int is0or1(char c);
+
+// texture functions
+int parse_texture(int fd, t_file *file);
+void parse_texture_line(char *line, t_file *file);
+
+// map functions
+void map_reader(char *line, t_file *file);
+void map_validator(char **map);
+int parse_map(char **map, t_file *file);
+int check_map_validity(char **map);
+int map_checker(char **map, t_file *file);
+int check_1_line(char *line);
+int check_mid_lines(char *line);
+void recheck_map(char **map);
+
+// color functions
+void   first_init_colors(t_file *file);
+void fill_rgb(char *line, t_file *file);
+void check_rgb_limits(t_file *file);
+int parse_rgb(char **split_line, t_file *file);
+
+// checker functions
+int check_init(t_file *file);
+int check_for_one(char *line, t_file *file);
+
+// free functions
+void ft_split_free(char **split);
+
 
 #endif
