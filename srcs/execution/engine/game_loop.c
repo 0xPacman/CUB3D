@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:12:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 13:24:30 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:07:15 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,7 @@ int frame(t_engine *engine) {
     mlx_put_image_to_window(engine->mlx, engine->win, engine->gps[0].img, 4, 5);
     draw_face(engine, SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT - 100);
     
-    if (engine->is_door) {
+    if (engine->can_open_door) {
         mlx_put_image_to_window(engine->mlx, engine->win, engine->open_door[0].img, SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 50);
     }
     

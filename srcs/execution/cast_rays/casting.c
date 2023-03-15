@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:50:05 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 13:38:19 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:06:24 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void init_vars(t_engine *engine, int x)
     engine->is_door = 0;
     engine->door_pos.x = -1;
     engine->door_pos.y = -1;
+    engine->can_open_door = 0;
 }
 
 void init_dda(t_engine *engine)
@@ -81,8 +82,10 @@ void perform_dda(t_engine *engine)
         // Check if ray has hit a wall
         if (engine->map[(int)engine->ray.map.y][(int)engine->ray.map.x] == '1')
             engine->ray.hit = 1;
-        if (engine->map[(int)engine->ray.map.y][(int)engine->ray.map.x] == 'D' && engine->ray.side_dist.y < 2)
+        if (engine->map[(int)engine->ray.map.y][(int)engine->ray.map.x] == 'D')
         {
+            if (engine->ray.side_dist.y < 2)
+                engine->can_open_door = 1;
             engine->ray.hit = 1;
             engine->is_door = 1;
             engine->door_pos.x = engine->ray.map.x;
