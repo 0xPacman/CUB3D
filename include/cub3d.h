@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 12:19:25 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:04:07 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,27 +194,28 @@ typedef struct s_door
     int is_open;
     t_image texture;
 } t_door;
+
 // execution functions
-void    start_engine(t_file *file);
-void    init_controls(t_engine *engine);
-void    game_loop(t_engine *engine);
-void   put_pixel(t_image *img, int x, int y, int color);
+void			start_engine(t_file *file);
+void			init_controls(t_engine *engine);
+void			game_loop(t_engine *engine);
+void			put_pixel(t_image *img, int x, int y, int color);
 // movement functions
-void    move_forward(t_engine *engine);
-void    move_backward(t_engine *engine);
-void    move_left(t_engine *engine);
-void    move_right(t_engine *engine);
-void    rotate_left(t_engine *engine);
-void    rotate_right(t_engine *engine);
-void   check_controls(t_engine *engine);
+void			move_forward(t_engine *engine);
+void			move_backward(t_engine *engine);
+void			move_left(t_engine *engine);
+void			move_right(t_engine *engine);
+void			rotate_left(t_engine *engine);
+void			rotate_right(t_engine *engine);
+void			check_controls(t_engine *engine);
 // minimap system functions
-void    draw_square(t_engine *engine, int x, int y, int size, int color);
-void    draw_map(t_engine *engine, int size);
-void    start_casting(t_engine *engine);
+void    		draw_square(t_engine *engine, int x, int y, int size, int color);
+void    		draw_map(t_engine *engine, int size);
+void    		start_casting(t_engine *engine);
 
 unsigned int    get_color(t_texture *t, int x, int y);
 // parsing functions
 t_file *init_map(int fd);
-
+int				press_key_f(t_engine *engine);
 
 #endif
