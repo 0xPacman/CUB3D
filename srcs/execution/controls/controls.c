@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   controls.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:06:22 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 20:19:44 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:19:36 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	key_press(int keycode, t_engine *engine) {
         engine->controls.space = true;
     if (keycode == KEY_R)
         engine->controls.r = true;
+    if (keycode == KEY_F)
+        engine->controls.f = true;
     return (0);
 }
 
@@ -58,6 +60,8 @@ int	key_release(int keycode, t_engine *engine) {
         engine->controls.space = false;
     if (keycode == KEY_R)
         engine->controls.r = false;
+    if (keycode == KEY_F)
+        engine->controls.f = false;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 11:49:54 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:19:25 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@
 # define KEY_RIGHT 124
 # define KEY_ESC 53
 # define KEY_SPACE 49
+# define KEY_F 3
 
 //sides
 # define WEST 0
@@ -147,6 +148,7 @@ typedef struct s_controls {
     int     right;
     int     esc;
     int     space;
+    int     f;
     
 }               t_controls;
 
@@ -181,6 +183,7 @@ typedef struct s_engine {
     t_rgb       floor;
     t_rgb       ceiling;
     int         is_door;
+    t_point     door_pos;
 }               t_engine;
 typedef struct s_door
 {

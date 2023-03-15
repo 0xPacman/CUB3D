@@ -6,7 +6,7 @@
 /*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:50:05 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 12:11:56 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:18:26 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void init_vars(t_engine *engine, int x)
     engine->ray.delta_dist.y = fabs(1 / engine->ray.dir.y);
     engine->ray.hit = 0; // was there a wall hit?
     engine->is_door = 0;
+    engine->door_pos.x = -1;
+    engine->door_pos.y = -1;
 }
 
 void init_dda(t_engine *engine)
@@ -79,6 +81,8 @@ void perform_dda(t_engine *engine)
         {
             engine->ray.hit = 1;
             engine->is_door = 1;
+            engine->door_pos.x = engine->ray.map.x;
+            engine->door_pos.y = engine->ray.map.y;
         }
     }
 }
