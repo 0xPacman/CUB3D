@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   engine.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/14 21:52:08 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/15 11:55:29 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,10 +158,8 @@ void start_engine(t_file *file)
         while (engine->map[i])
         {
             engine->map[i][ft_strlen(engine->map[i]) - 1] = '\0';
-            //printf("%s\n", engine->map[i]);
             i++;
         }
-
         init_texture(engine, file);
         init_controls(engine);
         game_loop(engine);
