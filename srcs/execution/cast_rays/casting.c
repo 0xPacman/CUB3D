@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   casting.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:50:05 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 14:21:25 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/15 14:24:38 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void init_vars(t_engine *engine, int x)
     engine->door_pos.x = -1;
     engine->door_pos.y = -1;
     engine->can_open_door = 0;
+    engine->can_close_door = 0;
 }
 
 void init_dda(t_engine *engine)
