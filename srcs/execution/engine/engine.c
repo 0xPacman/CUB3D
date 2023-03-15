@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 18:32:53 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/15 18:33:30 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ BOOL	init_engine(t_engine *engine)
 	engine->mlx = mlx_init();
 	if (engine->mlx)
 	{
-		engine->win = mlx_new_window(engine->mlx, SCREEN_WIDTH, SCREEN_HEIGHT, "HELL3D");
+		engine->win = mlx_new_window(engine->mlx,
+				SCREEN_WIDTH, SCREEN_HEIGHT, "HELL3D");
 		if (engine->win)
 			return (TRUE);
 	}
