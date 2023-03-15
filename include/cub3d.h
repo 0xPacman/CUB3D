@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
+/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 15:34:13 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 14:23:25 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:58:22 by roudouch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,5 +223,11 @@ unsigned int    get_color(t_texture *t, int x, int y);
 // parsing functions
 t_file *init_map(int fd);
 int				press_key_f(t_engine *engine);
+void            draw_ceil_floor(t_engine *engine, int x);
+void            draw_wall(t_engine *engine, int x);
+int             check_side(t_engine *engine);
+void	        calc_tex_x(t_engine *engine, t_texture *texture);
+unsigned int	create_color(int r, int g, int b);
+unsigned int	get_color(t_texture *t, int x, int y);
 
 #endif

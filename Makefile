@@ -28,7 +28,10 @@ SRCS	=	cub3d.c \
 			./srcs/parsing/init_map.c \
 			./srcs/parsing/get_next_line/get_next_line.c \
 			./srcs/parsing/get_next_line/get_next_line_utils.c \
-			./srcs/execution/controls/doors/change_status_door.c
+			./srcs/execution/controls/doors/change_status_door.c \
+			./srcs/execution/draw_screen/draw.c \
+			./srcs/execution/draw_screen/utils.c \
+
 
 OBJS	=	$(SRCS:.c=.o)
 
