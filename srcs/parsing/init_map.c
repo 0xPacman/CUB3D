@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/16 13:21:14 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 23:02:19 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,19 @@ t_file	*init_map(int fd)
 	if (!parse_file(fd, file))
 		return (NULL);
 	return (file);
+}
+
+void	check_if_map_endswith0(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+		i++;
+	i--;
+	j = 0;
+	if (ft_strchr("0", map[i][j]) ||
+	ft_strnstr(map[i], "101", ft_strlen(map[i])))
+		error(INVALID_MAP);
 }

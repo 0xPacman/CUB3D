@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 16:26:55 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/16 13:44:17 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:07:03 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	start_engine(t_file *file)
 	engine = malloc(sizeof(t_engine));
 	if (engine && init_engine(engine))
 	{
+		engine->file = file;
 		engine->map = file->map;
 		engine->floor = file->floor;
 		engine->ceiling = file->ceiling;

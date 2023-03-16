@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 14:40:06 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 18:07:53 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:26:50 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,16 @@ void	check_controls(t_engine *engine)
 		rotate_left(engine);
 	if (engine->controls.right)
 		rotate_right(engine);
+}
+
+void	freetoclose(t_engine *engine)
+{
+	free(engine->map);
+	free(engine->door);
+	free(engine->open_door);
+	free(engine->close_door);
+	free(engine->texture);
+	free(engine->face);
+	free(engine->gun);
+	free(engine->gps);
 }

@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/02 17:06:22 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 18:08:02 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:26:36 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	close_game(t_engine *engine)
 {
 	mlx_destroy_window(engine->mlx, engine->win);
+	freetoclose(engine);
 	free(engine);
 	engine = NULL;
 	exit(EXIT_SUCCESS);

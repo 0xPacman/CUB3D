@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   calc.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: roudouch <roudouch@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:30:32 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 17:30:51 by roudouch         ###   ########.fr       */
+/*   Updated: 2023/03/16 19:30:41 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../include/cub3d.h"
 
 /*
-	Calculate distance projected on camera direction
-	(oblique distance will give fisheye effect!)
+	due to how deltaDist and sideDist were scaled by a factor of
+	|rayDir| above, the length of sideDist already almost equals perpWallDist.
+	We just need to subtract deltaDist once from it, going one step back
 */
 void	calculate_wall_dist(t_engine *engine)
 {

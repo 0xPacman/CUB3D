@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:47:03 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/16 15:06:30 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:36:27 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,10 +260,10 @@ int				parse_rgb(char **split_line, t_file *file);
 // checker functions
 int				check_init(t_file *file);
 int				check_for_one(char *line, t_file *file);
+void			check_for_0(char **map);
 
 //control functions
 void			init_keys(t_engine *engine);
-void			init_controls(t_engine *engine);
 int				close_game(t_engine *engine);
 int				key_press(int keycode, t_engine *engine);
 int				key_release(int keycode, t_engine *engine);
@@ -295,5 +295,6 @@ void			draw_face(t_engine *engine, int x, int y);
 int				map_len_y(char **map);
 int				frame(t_engine *engine);
 void			game_loop(t_engine *engine);
-
+void			freetoclose(t_engine *engine);
+void			check_if_map_endswith0(char **map);
 #endif

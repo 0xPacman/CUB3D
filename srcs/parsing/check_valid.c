@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:23:38 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/16 13:21:14 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:36:57 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	map_validator(char **map)
 	int	j;
 
 	i = 0;
+	check_if_map_endswith0(map);
 	while (map[i])
 	{
 		j = 0;
@@ -74,4 +75,32 @@ int	check_map_validity(char **map)
 		i++;
 	}
 	return (unvalid_char == 0 && valid_char > 0);
+}
+
+void	check_for_0(char **map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == '0')
+			{
+				if (map[i - 1][j] == ' ')
+					error(INVALID_MAP);
+				if (map[i + 1][j] == ' ')
+					error(INVALID_MAP);
+				if (map[i][j - 1] == ' ')
+					error(INVALID_MAP);
+				if (map[i][j + 1] == ' ')
+					error(INVALID_MAP);
+			}
+			j++;
+		}
+		i++;
+	}
 }

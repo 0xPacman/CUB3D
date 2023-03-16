@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:09:06 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/16 13:21:14 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 22:48:48 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ int	parse_file(int fd, t_file *file)
 	parse_gun(file);
 	parse_gps(file);
 	parse_door(file);
+	check_for_0(file->map);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:41:51 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/16 13:49:39 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:04:19 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,8 @@ BOOL	init_engine(t_engine *engine)
 
 void	init_player_dir(char dir, t_engine *engine)
 {
-	engine->player.dir.y = 0;
 	engine->player.dir.x = -1;
+	engine->player.dir.y = 0;
 	engine->player.plane.x = 0;
 	engine->player.plane.y = 0.66;
 	if (dir == 'S')
