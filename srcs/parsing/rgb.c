@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:17:58 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 16:43:50 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:21:14 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ void	fill_rgb(char *line, t_file *file)
 		count++;
 	}
 	if (count != 3)
-		ERROR(INVALID_RGB);
+		error(INVALID_RGB);
 }
 
 void	check_rgb_limits(t_file *file)
 {
 	if (file->floor.r > 255 || file->floor.r < 0 || file->floor.g > 255
 		|| file->floor.g < 0 || file->floor.b > 255 || file->floor.b < 0)
-		ERROR(INVALID_RGB);
+		error(INVALID_RGB);
 	if (file->ceiling.r > 255 || file->ceiling.r < 0 || file->ceiling.g > 255
 		|| file->ceiling.g < 0 || file->ceiling.b > 255 || file->ceiling.b < 0)
-		ERROR(INVALID_RGB);
+		error(INVALID_RGB);
 }
 
 int	parse_rgb(char **split_line, t_file *file)

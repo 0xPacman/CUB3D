@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:09:06 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 16:41:39 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:21:14 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	parse_faces(t_file *file)
 {
 	file->face = malloc(sizeof(t_texture) * 5);
 	if (!file->face)
-		ERROR(ALLOCATE_ERROR);
+		error(ALLOCATE_ERROR);
 	file->face[0] = ft_strdup("textures/face/loop_face.xpm");
 	file->face[1] = ft_strdup("textures/face/loop_face1.xpm");
 	file->face[2] = ft_strdup("textures/face/left_face.xpm");
@@ -28,7 +28,7 @@ void	parse_gun(t_file *file)
 {
 	file->gun = malloc(sizeof(t_texture) * 4);
 	if (!file->gun)
-		ERROR(ALLOCATE_ERROR);
+		error(ALLOCATE_ERROR);
 	file->gun[0] = ft_strdup("textures/gun/gun.xpm");
 	file->gun[1] = ft_strdup("textures/gun/gun1.xpm");
 	file->gun[2] = ft_strdup("textures/gun/gun2.xpm");
@@ -39,7 +39,7 @@ void	parse_gps(t_file *file)
 {
 	file->gps = malloc(sizeof(t_texture) * 1);
 	if (!file->gps)
-		ERROR(ALLOCATE_ERROR);
+		error(ALLOCATE_ERROR);
 	file->gps[0] = ft_strdup("textures/gps.xpm");
 }
 
@@ -49,7 +49,7 @@ void	parse_door(t_file *file)
 	file->open_door = malloc(sizeof(t_texture) * 1);
 	file->close_door = malloc(sizeof(t_texture) * 1);
 	if (!file->door || !file->open_door || !file->close_door)
-		ERROR(ALLOCATE_ERROR);
+		error(ALLOCATE_ERROR);
 	file->door[0] = ft_strdup("textures/door.xpm");
 	file->open_door[0] = ft_strdup("textures/open_door.xpm");
 	file->close_door[0] = ft_strdup("textures/close_door.xpm");

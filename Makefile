@@ -40,6 +40,11 @@ SRCS	=	cub3d.c \
 			./srcs/parsing/texture_init.c \
 			./srcs/execution/controls/doors/change_status_door.c \
 			./srcs/execution/cast_rays/calc.c \
+			./srcs/execution/error.c \
+			./srcs/execution/engine/utils/load_textures.c \
+			./srcs/execution/engine/utils/init_engine.c \
+			./srcs/execution/draw_screen/draw_bar.c
+			
 
 OBJS	=	$(SRCS:.c=.o)
 

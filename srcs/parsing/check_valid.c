@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:23:38 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 16:36:56 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:21:14 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	map_validator(char **map)
 			{
 				if (!is0or1(map[i][j - 1]) && !is0or1(map[i][j + 1])
 					&& !is0or1(map[i - 1][j]) && !is0or1(map[i + 1][j]))
-					ERROR(INVALID_MAP);
+					error(INVALID_MAP);
 			}
 			j++;
 		}

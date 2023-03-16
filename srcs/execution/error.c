@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   put_pixel.c                                        :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/03 16:50:28 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/16 13:54:29 by ahjadani         ###   ########.fr       */
+/*   Created: 2023/03/16 13:19:59 by ahjadani          #+#    #+#             */
+/*   Updated: 2023/03/16 13:22:55 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../../../include/cub3d.h"
+#include "../../include/errors.h"
+#include "../../include/cub3d.h"
 
-void	put_pixel(t_image *img, int x, int y, int color)
+void	error(char *str)
 {
-	char	*dst;
-
-	dst = img->addr + (y * img->line_length + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+	ft_putstr_fd(str, 2);
 }

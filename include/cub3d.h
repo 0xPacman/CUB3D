@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 17:47:03 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 18:06:09 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 15:06:30 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,7 +211,8 @@ void			rotate_left(t_engine *engine);
 void			rotate_right(t_engine *engine);
 void			check_controls(t_engine *engine);
 // minimap system functions
-void			draw_square(t_engine *engine, int x, int y, int size, int color);
+void			draw_square(t_engine *engine,
+					t_point *pos, int size, int color);
 void			draw_map(t_engine *engine, int size);
 void			start_casting(t_engine *engine);
 
@@ -270,5 +271,29 @@ int				mouse_release(int keycode, int x, int y, t_engine *engine);
 int				mouse_press(int button, int x, int y, t_engine *engine);
 // free functions
 void			ft_split_free(char **split);
+
+//engine functions
+void			start_engine(t_file *file);
+void			apply_texture(t_engine *engine, t_file *file);
+void			load_door(t_engine *engine, t_file *file);
+// init functions
+void			init_doors_texture(t_engine *engine);
+void			init_texture(t_engine *engine, t_file *file);
+BOOL			init_engine(t_engine *engine);
+void			init_player_dir(char dir, t_engine *engine);
+void			init_player(t_engine *engine, t_file *file);
+// texture functions
+void			load_texture(t_engine *engine, char *path, t_texture *texture);
+void			load_gps(t_engine *engine, t_file *file);
+void			load_guns(t_engine *engine, t_file *file);
+void			load_faces(t_engine *engine, t_file *file);
+// game loop functions
+void			draw_thick_horizontal_line(t_image *img, int x1, int x2, int y);
+void			draw_status_bar(t_engine *engine);
+void			default_face(t_engine *engine, int x, int y);
+void			draw_face(t_engine *engine, int x, int y);
+int				map_len_y(char **map);
+int				frame(t_engine *engine);
+void			game_loop(t_engine *engine);
 
 #endif

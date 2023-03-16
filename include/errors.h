@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 15:26:47 by roudouch          #+#    #+#             */
-/*   Updated: 2023/03/15 17:54:20 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:21:25 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define INVALID_PLAYER_DIR "Error: Invalid player direction\n"
 
 // define the print error function as a macro
-# define ERROR(x) ft_putstr_fd(x, 2)
+// # define ERROR(x) ft_putstr_fd(x, 2)
+
+void	error(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 10:45:17 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 16:30:51 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:21:14 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ t_file	*init_map(int fd)
 
 	file = malloc(sizeof(t_file));
 	if (!file)
-		return (ERROR(ALLOCATE_ERROR), NULL);
+		return (error(ALLOCATE_ERROR), NULL);
 	first_init_colors(file);
 	file->north = NULL;
 	file->south = NULL;
@@ -78,7 +78,7 @@ t_file	*init_map(int fd)
 	file->flag = 0;
 	file->map = malloc(sizeof(char *) * 10000);
 	if (!file->map)
-		return (ERROR(ALLOCATE_ERROR), NULL);
+		return (error(ALLOCATE_ERROR), NULL);
 	if (!parse_file(fd, file))
 		return (NULL);
 	return (file);

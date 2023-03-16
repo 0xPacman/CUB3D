@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:19:20 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 16:50:55 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:21:14 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_texture_line(char *line, t_file *file)
 		line = ft_strdup("[]");
 	split_line = ft_split(line + i, ' ');
 	if (line[i] == '1' && !check_init(file))
-		ERROR(INVALID_MAP);
+		error(INVALID_MAP);
 	else if (split_line[0][0] == 'W' && split_line[0][1] == 'E')
 		file->west = ft_strjoin("", ft_strtrim(split_line[1], " \n\t\v\f\r"));
 	else if (split_line[0][0] == 'E' && split_line[0][1] == 'A')

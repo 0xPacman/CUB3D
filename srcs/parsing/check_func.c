@@ -6,7 +6,7 @@
 /*   By: ahjadani <ahjadani@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:21:45 by ahjadani          #+#    #+#             */
-/*   Updated: 2023/03/15 16:41:03 by ahjadani         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:21:14 by ahjadani         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	map_checker(char **map, t_file *file)
 {
 	if (!parse_map(map, file))
-		ERROR(INVALID_PLAYER);
+		error(INVALID_PLAYER);
 	if (!check_map_validity(map))
-		ERROR(INVALID_MAP);
+		error(INVALID_MAP);
 	return (1);
 }
 
@@ -66,10 +66,10 @@ void	recheck_map(char **map)
 		while (map[i][j])
 		{
 			if ((i == 0 || i == ft_strlen(map[i])) && !check_1_line(map[i]))
-				ERROR(INVALID_MAP);
+				error(INVALID_MAP);
 			else if ((j == 0 || j == ft_strlen(map[i]))
 				&& !check_mid_lines(map[i]))
-				ERROR(INVALID_MAP);
+				error(INVALID_MAP);
 			j++;
 		}
 		i++;
