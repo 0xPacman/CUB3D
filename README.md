@@ -1,2 +1,6 @@
 # CUB3D
-Wolfenstein4D
+Cub3D AKA HELL3D.
+
+
+# Resources: 
+- http://www.edepot.com/algorithm.html
