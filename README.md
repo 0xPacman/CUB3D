@@ -8,6 +8,7 @@ Cub3d is a 3D game engine developed in C programming language that allows us to 
 - `Right/Left` & `Right Click Mouse` to change the view
 - `R` to reload the ammo
 - `F` to close and open the door
+- `ESC` to quit
 
 The game will work only for MacOS
 
